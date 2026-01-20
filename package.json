@@ -1,0 +1,17 @@
+{
+  "name": "carlashub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CarlaHub theme dev tooling (Sass watch + BrowserSync proxy)",
+  "devDependencies": {
+    "browser-sync": "^2.29.3",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.77.8"
+  },
+  "scripts": {
+    "sass:watch": "sass --watch sass/style.scss:assets/css/theme.css sass/woocommerce.scss:assets/css/woocommerce.css --style=expanded --source-map",
+    "sass:build": "sass sass/style.scss:assets/css/theme.css sass/woocommerce.scss:assets/css/woocommerce.css --style=expanded --source-map",
+    "serve": "node dev/dev-server.js",
+    "dev": "npm-run-all --parallel sass:watch serve"
+  }
+}

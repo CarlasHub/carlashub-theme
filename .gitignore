@@ -1,0 +1,23 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Build output
+assets/css/*.map
+
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+.history/
+
+# WordPress noise
+wp-config.php
+.env
+
+# Composer (if added later)
+vendor/
+
+# Logs
+*.log
