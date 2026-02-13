@@ -434,7 +434,7 @@
     flex: 1 1 auto;
     padding-top: 0.25rem;
     border-radius: inherit;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .post-meta,
@@ -529,7 +529,7 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: var(--c-space-md);
-    row-gap: calc(var(--c-space-lg) + 2rem);
+    row-gap: calc(var(--c-space-2xl) + 2rem);
     align-items: stretch;
     justify-items: stretch;
   }
@@ -537,12 +537,12 @@
   .post-cards--dominant {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: var(--c-space-md);
-    row-gap: calc(var(--c-space-lg) + 2rem);
+    row-gap: calc(var(--c-space-2xl) + 2rem);
   }
 
   .post-cards .card,
   .is-style-cards .card {
-    overflow: hidden;
+    overflow: visible;
   }
 
   :root {
@@ -581,17 +581,17 @@
 
   .post-cards > *:nth-child(3n+1),
   .is-style-cards > *:nth-child(3n+1) {
-    transform: translateY(0);
+    margin-top: 0;
   }
 
   .post-cards > *:nth-child(3n+2),
   .is-style-cards > *:nth-child(3n+2) {
-    transform: translateY(2rem);
+    margin-top: 2rem;
   }
 
   .post-cards > *:nth-child(3n),
   .is-style-cards > *:nth-child(3n) {
-    transform: translateY(1rem);
+    margin-top: 1rem;
   }
 
   @media (max-width: 60rem) {
@@ -599,19 +599,19 @@
     .post-cards--dominant,
     .is-style-cards {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      row-gap: calc(var(--c-space-lg) + 1rem);
+      row-gap: calc(var(--c-space-2xl) + 1rem);
     }
 
     .post-cards > *:nth-child(3n+2),
     .is-style-cards > *:nth-child(3n+2),
     .post-cards > *:nth-child(3n),
     .is-style-cards > *:nth-child(3n) {
-      transform: translateY(0);
+      margin-top: 0;
     }
 
     .post-cards > *:nth-child(2n+2),
     .is-style-cards > *:nth-child(2n+2) {
-      transform: translateY(1rem);
+      margin-top: 1rem;
     }
   }
 
@@ -620,12 +620,12 @@
     .post-cards--dominant,
     .is-style-cards {
       grid-template-columns: 1fr;
-      row-gap: var(--c-space-lg);
+      row-gap: var(--c-space-xl);
     }
 
     .post-cards > *,
     .is-style-cards > * {
-      transform: translateY(0);
+      margin-top: 0;
     }
   }
 
