@@ -433,6 +433,8 @@
     min-width: 0;
     flex: 1 1 auto;
     padding-top: 0.25rem;
+    border-radius: inherit;
+    overflow: hidden;
   }
 
   .post-meta,
