@@ -156,7 +156,7 @@
   <!-- wp:heading {"level":2} --><h2>Query Loop cards</h2><!-- /wp:heading -->
   <!-- wp:query {"query":{"perPage":3,"postType":"post","order":"desc","orderBy":"date"}} -->
   <div class="wp-block-query">
-    <!-- wp:post-template {"className":"post-cards post-cards--dominant is-style-cards"} -->
+    <!-- wp:post-template {"className":"post-cards is-style-cards"} -->
       <!-- wp:group {"className":"card"} -->
       <div class="wp-block-group card">
         <!-- wp:post-featured-image {"isLink":true,"sizeSlug":"large"} /-->
