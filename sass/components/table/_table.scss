@@ -1,0 +1,41 @@
+@layer components {
+  .c-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--c-font-sans);
+    font-size: var(--c-font-size-sm);
+    background: var(--c-color-surface);
+    border: 1px solid var(--c-color-border);
+    border-radius: var(--c-radius-md);
+    overflow: hidden;
+  }
+
+  .c-table th,
+  .c-table td {
+    padding: var(--c-space-sm) var(--c-space-md);
+    border-bottom: 1px solid var(--c-color-border);
+    text-align: left;
+  }
+
+  .c-table th {
+    font-weight: var(--c-font-weight-semibold);
+    color: var(--c-color-text);
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-table tr:hover td {
+    background: rgba(47, 111, 237, 0.04);
+  }
+
+  .c-table--a {
+    border-color: var(--c-color-border);
+  }
+
+  .c-table--b th {
+    background: var(--c-color-surface);
+  }
+
+  .c-table--c {
+    border-color: var(--c-color-border-strong);
+  }
+}

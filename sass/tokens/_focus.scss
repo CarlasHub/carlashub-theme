@@ -1,0 +1,11 @@
+$focus: (
+  "width": 2px,
+  "offset": 2px
+);
+
+$motion: (
+  "fast": 120ms,
+  "normal": 180ms,
+  "slow": 240ms,
+  "ease": cubic-bezier(0.2, 0, 0, 1)
+);

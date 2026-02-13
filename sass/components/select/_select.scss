@@ -1,0 +1,60 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-select {
+    display: grid;
+    gap: var(--c-space-xs);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-select__label {
+    font-size: var(--c-font-size-sm);
+    color: var(--c-color-text);
+  }
+
+  .c-select__field {
+    width: 100%;
+    padding: var(--c-space-sm) var(--c-space-xl) var(--c-space-sm) var(--c-space-md);
+    border-radius: var(--c-radius-md);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    color: var(--c-color-text);
+    font-size: var(--c-font-size-md);
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--c-color-text-muted) 50%),
+      linear-gradient(135deg, var(--c-color-text-muted) 50%, transparent 50%);
+    background-position: calc(100% - 1rem) calc(50% - 0.25rem), calc(100% - 0.7rem) calc(50% - 0.25rem);
+    background-size: 0.4rem 0.4rem, 0.4rem 0.4rem;
+    background-repeat: no-repeat;
+    @include mixins.transition-base;
+    @include mixins.focus-ring(var(--c-radius-md));
+  }
+
+  .c-select__hint {
+    font-size: var(--c-font-size-xs);
+    color: var(--c-color-text-muted);
+  }
+
+  .c-select--a .c-select__field {
+    background-color: var(--c-color-surface);
+  }
+
+  .c-select--b .c-select__field {
+    background-color: var(--c-color-surface-alt);
+  }
+
+  .c-select--c .c-select__field {
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-select--has-error .c-select__field {
+    border-color: var(--c-color-danger);
+  }
+
+  .c-select--is-disabled .c-select__field,
+  .c-select__field:disabled {
+    background: var(--c-color-surface-alt);
+    color: var(--c-color-text-subtle);
+    cursor: not-allowed;
+  }
+}

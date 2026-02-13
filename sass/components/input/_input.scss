@@ -1,0 +1,63 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-input {
+    display: grid;
+    gap: var(--c-space-xs);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-input__label {
+    font-size: var(--c-font-size-sm);
+    color: var(--c-color-text);
+  }
+
+  .c-input__field {
+    width: 100%;
+    padding: var(--c-space-sm) var(--c-space-md);
+    border-radius: var(--c-radius-md);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    color: var(--c-color-text);
+    font-size: var(--c-font-size-md);
+    @include mixins.transition-base;
+    @include mixins.focus-ring(var(--c-radius-md));
+  }
+
+  .c-input__hint {
+    font-size: var(--c-font-size-xs);
+    color: var(--c-color-text-muted);
+  }
+
+  .c-input__error {
+    font-size: var(--c-font-size-xs);
+    color: var(--c-color-danger);
+  }
+
+  .c-input__field:hover {
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-input--a .c-input__field {
+    background: var(--c-color-surface);
+  }
+
+  .c-input--b .c-input__field {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-input--c .c-input__field {
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-input--has-error .c-input__field {
+    border-color: var(--c-color-danger);
+  }
+
+  .c-input--is-disabled .c-input__field,
+  .c-input__field:disabled {
+    background: var(--c-color-surface-alt);
+    color: var(--c-color-text-subtle);
+    cursor: not-allowed;
+  }
+}

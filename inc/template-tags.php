@@ -127,9 +127,36 @@ if ( ! function_exists( 'carlashub_post_thumbnail' ) ) :
 		if ( is_singular() ) :
 			?>
 
-			<div class="post-thumbnail">
-				<?php the_post_thumbnail(); ?>
-			</div><!-- .post-thumbnail -->
+			<?php
+			$hero_class = 'post-hero__media';
+			if ( ! has_post_thumbnail() ) {
+				$hero_class .= ' post-hero__media--fallback';
+			}
+			?>
+			<section class="post-hero" aria-label="<?php esc_attr_e( 'Post banner', 'carlashub' ); ?>">
+				<div class="<?php echo esc_attr( $hero_class ); ?>">
+					<?php if ( has_post_thumbnail() ) : ?>
+						<?php
+						the_post_thumbnail(
+							'full',
+							array(
+								'class'   => 'post-hero__image',
+								'loading' => 'eager',
+							)
+						);
+						?>
+					<?php endif; ?>
+					<div class="post-hero__content">
+						<h1 class="post-hero__title"><?php the_title(); ?></h1>
+						<?php if ( 'post' === get_post_type() ) : ?>
+							<div class="post-hero__meta">
+								<?php carlashub_posted_on(); ?>
+								<?php carlashub_posted_by(); ?>
+							</div>
+						<?php endif; ?>
+					</div>
+				</div>
+			</section>
 
 		<?php else : ?>
 

@@ -1,0 +1,54 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-accordion {
+    display: grid;
+    gap: var(--c-space-sm);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-accordion__item {
+    border: 1px solid var(--c-color-border);
+    border-radius: var(--c-radius-md);
+    background: var(--c-color-surface);
+  }
+
+  .c-accordion__header {
+    margin: 0;
+  }
+
+  .c-accordion__trigger {
+    width: 100%;
+    text-align: left;
+    padding: var(--c-space-md) var(--c-space-lg);
+    border: 0;
+    background: transparent;
+    color: var(--c-color-text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include mixins.focus-ring(var(--c-radius-md));
+  }
+
+  .c-accordion__panel {
+    padding: 0 var(--c-space-lg) var(--c-space-lg);
+    color: var(--c-color-text-muted);
+  }
+
+  .c-accordion--a .c-accordion__item {
+    border-color: var(--c-color-border);
+  }
+
+  .c-accordion--b .c-accordion__item {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-accordion--c .c-accordion__item {
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-accordion--is-open .c-accordion__panel {
+    display: block;
+  }
+}

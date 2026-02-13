@@ -49,7 +49,8 @@ function carlashub_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'carlashub' ),
+			'primary' => esc_html__( 'Primary', 'carlashub' ),
+			'footer'  => esc_html__( 'Footer', 'carlashub' ),
 		)
 	);
 
@@ -85,6 +86,13 @@ function carlashub_setup() {
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
 
+	// Block editor support.
+	add_theme_support( 'editor-styles' );
+	add_theme_support( 'wp-block-styles' );
+	add_theme_support( 'responsive-embeds' );
+
+	add_editor_style( 'assets/css/theme.css' );
+
 	/**
 	 * Add support for core custom logo.
 	 *
@@ -101,6 +109,165 @@ function carlashub_setup() {
 	);
 }
 add_action( 'after_setup_theme', 'carlashub_setup' );
+
+/**
+ * Register block style variations.
+ */
+function carlashub_register_block_styles() {
+	register_block_style(
+		'core/button',
+		array(
+			'name'  => 'ghost',
+			'label' => __( 'Ghost', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/group',
+		array(
+			'name'  => 'frame',
+			'label' => __( 'Frame', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/group',
+		array(
+			'name'  => 'editorial-wide',
+			'label' => __( 'Editorial Wide', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/group',
+		array(
+			'name'  => 'editorial-narrow',
+			'label' => __( 'Editorial Narrow', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/group',
+		array(
+			'name'  => 'editorial-full',
+			'label' => __( 'Editorial Full', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/cover',
+		array(
+			'name'  => 'veil',
+			'label' => __( 'Veil', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/image',
+		array(
+			'name'  => 'ornament',
+			'label' => __( 'Ornament', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/separator',
+		array(
+			'name'  => 'sigil',
+			'label' => __( 'Sigil', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/quote',
+		array(
+			'name'  => 'editorial',
+			'label' => __( 'Editorial', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/table',
+		array(
+			'name'  => 'ruled',
+			'label' => __( 'Ruled', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/navigation',
+		array(
+			'name'  => 'arc',
+			'label' => __( 'Arc', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/search',
+		array(
+			'name'  => 'field',
+			'label' => __( 'Field', 'carlashub' ),
+		)
+	);
+	register_block_style(
+		'core/post-template',
+		array(
+			'name'  => 'cards',
+			'label' => __( 'Cards', 'carlashub' ),
+		)
+	);
+}
+add_action( 'init', 'carlashub_register_block_styles' );
+
+/**
+ * Register block pattern categories.
+ */
+function carlashub_register_pattern_categories() {
+	register_block_pattern_category(
+		'carlashub-hero',
+		array(
+			'label' => __( 'CarlasHub Hero', 'carlashub' ),
+		)
+	);
+	register_block_pattern_category(
+		'carlashub-content',
+		array(
+			'label' => __( 'CarlasHub Content', 'carlashub' ),
+		)
+	);
+	register_block_pattern_category(
+		'carlashub-page-home',
+		array(
+			'label' => __( 'CarlasHub — Home', 'carlashub' ),
+		)
+	);
+	register_block_pattern_category(
+		'carlashub-page-blog',
+		array(
+			'label' => __( 'CarlasHub — Blog', 'carlashub' ),
+		)
+	);
+	register_block_pattern_category(
+		'carlashub-page-portfolio',
+		array(
+			'label' => __( 'CarlasHub — Portfolio', 'carlashub' ),
+		)
+	);
+	register_block_pattern_category(
+		'carlashub-page-about',
+		array(
+			'label' => __( 'CarlasHub — About', 'carlashub' ),
+		)
+	);
+	register_block_pattern_category(
+		'carlashub-page-contact',
+		array(
+			'label' => __( 'CarlasHub — Contact', 'carlashub' ),
+		)
+	);
+	register_block_pattern_category(
+		'carlashub-page-style',
+		array(
+			'label' => __( 'CarlasHub — Style Guide', 'carlashub' ),
+		)
+	);
+	register_block_pattern_category(
+		'carlashub-layout',
+		array(
+			'label' => __( 'CarlasHub — Layout Variants', 'carlashub' ),
+		)
+	);
+}
+add_action( 'init', 'carlashub_register_pattern_categories' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -140,7 +307,7 @@ add_action( 'widgets_init', 'carlashub_widgets_init' );
 function carlashub_scripts() {
 	wp_enqueue_style(
 		'carlashub-fonts',
-		'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap',
+		'https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&family=Sora:wght@400;500;600&display=swap',
 		array(),
 		_S_VERSION
 	);
@@ -161,8 +328,59 @@ function carlashub_scripts() {
 		);
 	}
 
+	wp_enqueue_script(
+		'carlashub-theme',
+		get_theme_file_uri( '/assets/js/theme.js' ),
+		array(),
+		filemtime( get_theme_file_path( '/assets/js/theme.js' ) ),
+		true
+	);
+
 
 	wp_enqueue_script( 'carlashub-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+
+	wp_enqueue_script(
+		'carlashub-components-registry',
+		get_theme_file_uri( '/js/components/registry.js' ),
+		array(),
+		filemtime( get_theme_file_path( '/js/components/registry.js' ) ),
+		true
+	);
+
+	$component_modules = array(
+		'/js/components/toggle.js',
+		'/js/components/tooltip.js',
+		'/js/components/dropdown.js',
+		'/js/components/modal.js',
+		'/js/components/drawer.js',
+		'/js/components/tabs.js',
+		'/js/components/accordion.js',
+		'/js/components/alert.js',
+		'/js/components/toast.js',
+		'/js/components/table-row-actions.js',
+		'/js/components/file-upload.js',
+		'/js/components/search-input.js',
+		'/js/components/filter-group.js',
+	);
+
+	foreach ( $component_modules as $module_path ) {
+		$handle = 'carlashub-components-' . md5( $module_path );
+		wp_enqueue_script(
+			$handle,
+			get_theme_file_uri( $module_path ),
+			array( 'carlashub-components-registry' ),
+			filemtime( get_theme_file_path( $module_path ) ),
+			true
+		);
+	}
+
+	wp_enqueue_script(
+		'carlashub-components',
+		get_theme_file_uri( '/js/components/index.js' ),
+		array( 'carlashub-components-registry' ),
+		filemtime( get_theme_file_path( '/js/components/index.js' ) ),
+		true
+	);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -184,6 +402,16 @@ require get_template_directory() . '/inc/template-tags.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
+
+/**
+ * Demo content seeding.
+ */
+require get_template_directory() . '/inc/demo-content.php';
+
+/**
+ * Admin setup helper.
+ */
+require get_template_directory() . '/inc/admin-setup.php';
 
 /**
  * Customizer additions.

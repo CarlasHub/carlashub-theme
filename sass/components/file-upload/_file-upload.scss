@@ -1,0 +1,61 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-file-upload {
+    display: grid;
+    gap: var(--c-space-sm);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-file-upload__label {
+    font-size: var(--c-font-size-sm);
+    color: var(--c-color-text);
+  }
+
+  .c-file-upload__control {
+    display: flex;
+    align-items: center;
+    gap: var(--c-space-sm);
+    padding: var(--c-space-sm);
+    border-radius: var(--c-radius-md);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+  }
+
+  .c-file-upload__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .c-file-upload__button {
+    padding: var(--c-space-xs) var(--c-space-md);
+    border-radius: var(--c-radius-sm);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface-alt);
+    cursor: pointer;
+    @include mixins.focus-ring(var(--c-radius-sm));
+  }
+
+  .c-file-upload__filename {
+    font-size: var(--c-font-size-sm);
+    color: var(--c-color-text-muted);
+  }
+
+  .c-file-upload--a .c-file-upload__control {
+    border-color: var(--c-color-border);
+  }
+
+  .c-file-upload--b .c-file-upload__control {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-file-upload--c .c-file-upload__control {
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-file-upload--is-disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}

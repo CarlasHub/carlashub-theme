@@ -1,0 +1,52 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-filter-group {
+    border: 1px solid var(--c-color-border);
+    border-radius: var(--c-radius-md);
+    background: var(--c-color-surface);
+    padding: var(--c-space-md);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-filter-group__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--c-space-sm);
+  }
+
+  .c-filter-group__title {
+    font-size: var(--c-font-size-md);
+    margin: 0;
+  }
+
+  .c-filter-group__toggle {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    @include mixins.focus-ring(var(--c-radius-sm));
+  }
+
+  .c-filter-group__body {
+    margin-top: var(--c-space-md);
+    display: grid;
+    gap: var(--c-space-sm);
+  }
+
+  .c-filter-group--is-open .c-filter-group__body {
+    display: grid;
+  }
+
+  .c-filter-group--a {
+    border-color: var(--c-color-border);
+  }
+
+  .c-filter-group--b {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-filter-group--c {
+    border-color: var(--c-color-border-strong);
+  }
+}

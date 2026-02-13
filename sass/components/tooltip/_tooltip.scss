@@ -1,0 +1,52 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-tooltip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .c-tooltip__trigger {
+    border: 0;
+    background: transparent;
+    color: var(--c-color-text);
+    cursor: help;
+    @include mixins.focus-ring(var(--c-radius-sm));
+  }
+
+  .c-tooltip__panel {
+    position: absolute;
+    z-index: 10;
+    min-width: 10rem;
+    padding: var(--c-space-sm) var(--c-space-md);
+    border-radius: var(--c-radius-md);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    color: var(--c-color-text);
+    font-size: var(--c-font-size-sm);
+    box-shadow: var(--c-shadow-md);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+    transition: opacity var(--c-motion-fast) var(--c-motion-ease), transform var(--c-motion-fast) var(--c-motion-ease);
+  }
+
+  .c-tooltip--is-open .c-tooltip__panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .c-tooltip--a .c-tooltip__panel {
+    background: var(--c-color-surface);
+  }
+
+  .c-tooltip--b .c-tooltip__panel {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-tooltip--c .c-tooltip__panel {
+    border-color: var(--c-color-border-strong);
+  }
+}

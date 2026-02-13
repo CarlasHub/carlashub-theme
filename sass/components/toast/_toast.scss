@@ -1,0 +1,53 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-toast {
+    position: fixed;
+    bottom: var(--c-space-xl);
+    right: var(--c-space-xl);
+    display: grid;
+    gap: var(--c-space-sm);
+    z-index: 1100;
+  }
+
+  .c-toast__item {
+    display: grid;
+    gap: var(--c-space-xs);
+    padding: var(--c-space-md) var(--c-space-lg);
+    border-radius: var(--c-radius-md);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    box-shadow: var(--c-shadow-md);
+  }
+
+  .c-toast__title {
+    font-weight: var(--c-font-weight-semibold);
+  }
+
+  .c-toast__message {
+    color: var(--c-color-text-muted);
+  }
+
+  .c-toast__close {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    @include mixins.focus-ring(var(--c-radius-sm));
+  }
+
+  .c-toast--a .c-toast__item {
+    border-color: var(--c-color-accent);
+  }
+
+  .c-toast--b .c-toast__item {
+    border-color: var(--c-color-success);
+  }
+
+  .c-toast--c .c-toast__item {
+    border-color: var(--c-color-danger);
+  }
+
+  .c-toast--is-open {
+    display: grid;
+  }
+}

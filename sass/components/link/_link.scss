@@ -1,0 +1,36 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-link {
+    color: var(--c-color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    font-family: var(--c-font-sans);
+    font-size: var(--c-font-size-sm);
+    @include mixins.transition-base;
+    @include mixins.focus-ring(var(--c-radius-sm));
+  }
+
+  .c-link:hover {
+    color: var(--c-color-text);
+  }
+
+  .c-link--a {
+    font-weight: var(--c-font-weight-medium);
+  }
+
+  .c-link--b {
+    color: var(--c-color-text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--c-color-border);
+  }
+
+  .c-link--c {
+    color: var(--c-color-text-muted);
+  }
+
+  .c-link--is-disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+}

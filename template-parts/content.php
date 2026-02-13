@@ -12,20 +12,18 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="listitem">
 	<header class="entry-header">
 		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
+		if ( ! is_singular() ) :
 			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
 
-		if ( 'post' === get_post_type() ) :
-			?>
-			<div class="entry-meta">
-				<?php
-				carlashub_posted_on();
-				carlashub_posted_by();
+			if ( 'post' === get_post_type() ) :
 				?>
-			</div><!-- .entry-meta -->
+				<div class="entry-meta">
+					<?php
+					carlashub_posted_on();
+					carlashub_posted_by();
+					?>
+				</div><!-- .entry-meta -->
+			<?php endif; ?>
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 

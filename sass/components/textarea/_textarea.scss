@@ -1,0 +1,56 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-textarea {
+    display: grid;
+    gap: var(--c-space-xs);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-textarea__label {
+    font-size: var(--c-font-size-sm);
+    color: var(--c-color-text);
+  }
+
+  .c-textarea__field {
+    width: 100%;
+    min-height: 7rem;
+    padding: var(--c-space-sm) var(--c-space-md);
+    border-radius: var(--c-radius-md);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    color: var(--c-color-text);
+    font-size: var(--c-font-size-md);
+    resize: vertical;
+    @include mixins.transition-base;
+    @include mixins.focus-ring(var(--c-radius-md));
+  }
+
+  .c-textarea__hint {
+    font-size: var(--c-font-size-xs);
+    color: var(--c-color-text-muted);
+  }
+
+  .c-textarea--a .c-textarea__field {
+    background: var(--c-color-surface);
+  }
+
+  .c-textarea--b .c-textarea__field {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-textarea--c .c-textarea__field {
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-textarea--has-error .c-textarea__field {
+    border-color: var(--c-color-danger);
+  }
+
+  .c-textarea--is-disabled .c-textarea__field,
+  .c-textarea__field:disabled {
+    background: var(--c-color-surface-alt);
+    color: var(--c-color-text-subtle);
+    cursor: not-allowed;
+  }
+}

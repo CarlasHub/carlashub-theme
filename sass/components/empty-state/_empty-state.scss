@@ -1,0 +1,42 @@
+@layer components {
+  .c-empty-state {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: var(--c-space-md);
+    padding: var(--c-space-xxl);
+    border: 1px dashed var(--c-color-border);
+    border-radius: var(--c-radius-lg);
+    background: var(--c-color-surface);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-empty-state__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--c-color-text-muted);
+  }
+
+  .c-empty-state__title {
+    font-size: var(--c-font-size-lg);
+    font-weight: var(--c-font-weight-semibold);
+    margin: 0;
+  }
+
+  .c-empty-state__message {
+    color: var(--c-color-text-muted);
+    margin: 0;
+  }
+
+  .c-empty-state--a {
+    border-style: dashed;
+  }
+
+  .c-empty-state--b {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-empty-state--c {
+    border-color: var(--c-color-border-strong);
+  }
+}

@@ -1,0 +1,55 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-icon-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--c-radius-md);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    color: var(--c-color-text);
+    cursor: pointer;
+    @include mixins.transition-base;
+    @include mixins.focus-ring(var(--c-radius-md));
+  }
+
+  .c-icon-button__icon {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .c-icon-button:hover {
+    background: var(--c-color-surface-alt);
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-icon-button--a {
+    background: var(--c-color-accent);
+    border-color: var(--c-color-accent);
+    color: var(--c-color-accent-contrast);
+  }
+
+  .c-icon-button--b {
+    background: var(--c-color-surface);
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-icon-button--c {
+    background: transparent;
+    border-color: transparent;
+    color: var(--c-color-accent);
+  }
+
+  .c-icon-button--is-disabled,
+  .c-icon-button[disabled] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .c-icon-button--is-active {
+    box-shadow: inset 0 0 0 2px rgba(47, 111, 237, 0.2);
+  }
+}

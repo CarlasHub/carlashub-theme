@@ -1,0 +1,52 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-pagination {
+    display: flex;
+    gap: var(--c-space-sm);
+    align-items: center;
+    font-family: var(--c-font-sans);
+  }
+
+  .c-pagination__item {
+    min-width: 2.25rem;
+    height: 2.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--c-radius-sm);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    color: var(--c-color-text);
+    text-decoration: none;
+    @include mixins.transition-base;
+    @include mixins.focus-ring(var(--c-radius-sm));
+  }
+
+  .c-pagination__item:hover {
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-pagination__item--is-active,
+  .c-pagination--is-active .c-pagination__item {
+    border-color: var(--c-color-accent);
+    color: var(--c-color-accent);
+  }
+
+  .c-pagination--a .c-pagination__item {
+    border-radius: var(--c-radius-md);
+  }
+
+  .c-pagination--b .c-pagination__item {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-pagination--c .c-pagination__item {
+    min-width: 2.75rem;
+  }
+
+  .c-pagination--is-disabled .c-pagination__item {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}

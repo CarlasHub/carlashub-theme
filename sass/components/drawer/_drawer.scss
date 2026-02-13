@@ -1,0 +1,62 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-drawer {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 1000;
+  }
+
+  .c-drawer__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.4);
+  }
+
+  .c-drawer__panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: min(420px, 90vw);
+    background: var(--c-color-surface);
+    border-left: 1px solid var(--c-color-border);
+    padding: var(--c-space-xl);
+    display: grid;
+    gap: var(--c-space-lg);
+    box-shadow: var(--c-shadow-lg);
+  }
+
+  .c-drawer__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .c-drawer__title {
+    font-size: var(--c-font-size-lg);
+    font-weight: var(--c-font-weight-semibold);
+    margin: 0;
+  }
+
+  .c-drawer__body {
+    color: var(--c-color-text-muted);
+  }
+
+  .c-drawer--is-open {
+    display: block;
+  }
+
+  .c-drawer--a .c-drawer__panel {
+    background: var(--c-color-surface);
+  }
+
+  .c-drawer--b .c-drawer__panel {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-drawer--c .c-drawer__panel {
+    border-color: var(--c-color-border-strong);
+  }
+}

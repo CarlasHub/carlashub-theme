@@ -1,0 +1,49 @@
+@use "sass:map";
+@use "../tokens" as tokens;
+
+@layer base {
+  :root {
+    @each $name, $value in tokens.$colors {
+      --c-color-#{$name}: #{$value};
+    }
+    @each $name, $value in tokens.$spacing {
+      --c-space-#{$name}: #{$value};
+    }
+    @each $name, $value in tokens.$radii {
+      --c-radius-#{$name}: #{$value};
+    }
+    @each $name, $value in tokens.$shadows {
+      --c-shadow-#{$name}: #{$value};
+    }
+    @each $name, $value in tokens.$font-sizes {
+      --c-font-size-#{$name}: #{$value};
+    }
+    @each $name, $value in tokens.$font-weights {
+      --c-font-weight-#{$name}: #{$value};
+    }
+    @each $name, $value in tokens.$line-heights {
+      --c-line-height-#{$name}: #{$value};
+    }
+
+    --c-font-sans: #{map.get(tokens.$font-stacks, "sans")};
+    --c-font-serif: #{map.get(tokens.$font-stacks, "serif")};
+    --c-font-script: #{map.get(tokens.$font-stacks, "script")};
+    --c-font-mono: #{map.get(tokens.$font-stacks, "mono")};
+
+    --c-focus-width: #{map.get(tokens.$focus, "width")};
+    --c-focus-offset: #{map.get(tokens.$focus, "offset")};
+
+    --c-motion-fast: #{map.get(tokens.$motion, "fast")};
+    --c-motion-normal: #{map.get(tokens.$motion, "normal")};
+    --c-motion-slow: #{map.get(tokens.$motion, "slow")};
+    --c-motion-ease: #{map.get(tokens.$motion, "ease")};
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --c-motion-fast: 0ms;
+      --c-motion-normal: 0ms;
+      --c-motion-slow: 0ms;
+    }
+  }
+}

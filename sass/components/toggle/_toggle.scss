@@ -1,0 +1,70 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--c-space-sm);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-toggle__input {
+    width: 2.6rem;
+    height: 1.4rem;
+    border-radius: 999px;
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface-alt);
+    appearance: none;
+    position: relative;
+    cursor: pointer;
+    @include mixins.transition-base;
+    @include mixins.focus-ring(999px);
+  }
+
+  .c-toggle__input::after {
+    content: "";
+    position: absolute;
+    top: 0.15rem;
+    left: 0.15rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 999px;
+    background: var(--c-color-surface);
+    transition: transform var(--c-motion-normal) var(--c-motion-ease);
+    box-shadow: var(--c-shadow-sm);
+  }
+
+  .c-toggle__input:checked::after,
+  .c-toggle--is-active .c-toggle__input::after {
+    transform: translateX(1.1rem);
+  }
+
+  .c-toggle__input:checked,
+  .c-toggle--is-active .c-toggle__input {
+    background: var(--c-color-accent);
+    border-color: var(--c-color-accent);
+  }
+
+  .c-toggle__label {
+    font-size: var(--c-font-size-sm);
+    color: var(--c-color-text);
+  }
+
+  .c-toggle--a .c-toggle__input {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-toggle--b .c-toggle__input {
+    height: 1.6rem;
+  }
+
+  .c-toggle--c .c-toggle__input {
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-toggle--is-disabled,
+  .c-toggle__input:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}

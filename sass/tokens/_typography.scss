@@ -1,0 +1,30 @@
+$font-stacks: (
+  "serif": ("Cormorant Garamond", Garamond, "Times New Roman", serif),
+  "sans": ("Sora", "Helvetica Neue", Helvetica, Arial, sans-serif),
+  "script": ("Allura", "Brush Script MT", cursive),
+  "mono": (ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace)
+);
+
+$font-sizes: (
+  "xs": 0.75rem,
+  "sm": 0.875rem,
+  "md": 1rem,
+  "lg": 1.25rem,
+  "xl": 1.5rem,
+  "xxl": 2rem,
+  "xxxl": 2.5rem,
+  "display": 3.25rem
+);
+
+$font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "semibold": 600,
+  "bold": 700
+);
+
+$line-heights: (
+  "tight": 1.2,
+  "normal": 1.5,
+  "relaxed": 1.65
+);

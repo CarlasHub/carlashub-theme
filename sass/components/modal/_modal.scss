@@ -1,0 +1,66 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--c-space-xl);
+    background: rgba(15, 23, 42, 0.4);
+    z-index: 1000;
+  }
+
+  .c-modal__dialog {
+    width: min(640px, 100%);
+    background: var(--c-color-surface);
+    border-radius: var(--c-radius-lg);
+    border: 1px solid var(--c-color-border);
+    box-shadow: var(--c-shadow-lg);
+    padding: var(--c-space-xl);
+    display: grid;
+    gap: var(--c-space-lg);
+  }
+
+  .c-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--c-space-md);
+  }
+
+  .c-modal__title {
+    font-size: var(--c-font-size-xl);
+    font-weight: var(--c-font-weight-semibold);
+    color: var(--c-color-text);
+    margin: 0;
+  }
+
+  .c-modal__body {
+    color: var(--c-color-text-muted);
+    font-size: var(--c-font-size-md);
+  }
+
+  .c-modal__footer {
+    display: flex;
+    gap: var(--c-space-sm);
+    justify-content: flex-end;
+  }
+
+  .c-modal--is-open {
+    display: flex;
+  }
+
+  .c-modal--a .c-modal__dialog {
+    border-color: var(--c-color-border);
+  }
+
+  .c-modal--b .c-modal__dialog {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-modal--c .c-modal__dialog {
+    border-color: var(--c-color-border-strong);
+  }
+}

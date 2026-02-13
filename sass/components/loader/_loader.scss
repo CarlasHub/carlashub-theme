@@ -1,0 +1,35 @@
+@layer components {
+  .c-loader {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--c-space-sm);
+    color: var(--c-color-text);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-loader__spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 999px;
+    border: 2px solid rgba(31, 42, 55, 0.2);
+    border-top-color: var(--c-color-accent);
+    animation: c-spin var(--c-motion-normal) linear infinite;
+  }
+
+  .c-loader__label {
+    font-size: var(--c-font-size-sm);
+    color: var(--c-color-text-muted);
+  }
+
+  .c-loader--a .c-loader__spinner {
+    border-top-color: var(--c-color-accent);
+  }
+
+  .c-loader--b .c-loader__spinner {
+    border-top-color: var(--c-color-success);
+  }
+
+  .c-loader--c .c-loader__spinner {
+    border-top-color: var(--c-color-danger);
+  }
+}

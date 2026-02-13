@@ -1,0 +1,63 @@
+{
+  "version": 2,
+  "title": "High Contrast",
+  "slug": "high-contrast",
+  "styles": {
+    "color": {
+      "background": "#0C1519",
+      "text": "#CF9D7B"
+    },
+    "elements": {
+      "link": {
+        "color": {
+          "text": "#CF9D7B"
+        },
+        ":hover": {
+          "color": {
+            "text": "#724B39"
+          }
+        }
+      },
+      "button": {
+        "color": {
+          "background": "#CF9D7B",
+          "text": "#0C1519"
+        },
+        "border": {
+          "radius": "6px",
+          "width": "1px",
+          "color": "#724B39"
+        },
+        "typography": {
+          "fontWeight": "600",
+          "letterSpacing": "0.1em",
+          "textTransform": "uppercase"
+        }
+      },
+      "heading": {
+        "color": {
+          "text": "#CF9D7B"
+        }
+      }
+    },
+    "blocks": {
+      "core/group": {
+        "color": {
+          "background": "#162127"
+        }
+      },
+      "core/quote": {
+        "border": {
+          "color": "rgba(207, 157, 123, 0.6)",
+          "width": "2px"
+        }
+      },
+      "core/navigation": {
+        "typography": {
+          "letterSpacing": "0.12em",
+          "textTransform": "uppercase"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@layer components {
+  .c-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 var(--c-space-sm);
+    height: 1.5rem;
+    border-radius: var(--c-radius-pill);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface-alt);
+    color: var(--c-color-text);
+    font-size: var(--c-font-size-xs);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-badge--a {
+    background: rgba(47, 111, 237, 0.12);
+    border-color: rgba(47, 111, 237, 0.3);
+    color: var(--c-color-accent);
+  }
+
+  .c-badge--b {
+    background: rgba(31, 122, 77, 0.12);
+    border-color: rgba(31, 122, 77, 0.3);
+    color: var(--c-color-success);
+  }
+
+  .c-badge--c {
+    background: rgba(192, 54, 44, 0.12);
+    border-color: rgba(192, 54, 44, 0.3);
+    color: var(--c-color-danger);
+  }
+
+  .c-badge--is-disabled {
+    opacity: 0.6;
+  }
+}

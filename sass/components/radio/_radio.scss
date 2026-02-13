@@ -1,0 +1,62 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-radio {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--c-space-sm);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-radio__input {
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 999px;
+    border: 1px solid var(--c-color-border-strong);
+    background: var(--c-color-surface);
+    appearance: none;
+    display: grid;
+    place-items: center;
+    @include mixins.focus-ring(999px);
+    @include mixins.transition-base;
+  }
+
+  .c-radio__input::after {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    transform: scale(0);
+    transition: transform var(--c-motion-fast) var(--c-motion-ease);
+    background: var(--c-color-accent);
+  }
+
+  .c-radio__input:checked::after,
+  .c-radio--is-active .c-radio__input::after {
+    transform: scale(1);
+  }
+
+  .c-radio__label {
+    font-size: var(--c-font-size-sm);
+    color: var(--c-color-text);
+  }
+
+  .c-radio--a .c-radio__input {
+    border-color: var(--c-color-border);
+  }
+
+  .c-radio--b .c-radio__input {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .c-radio--c .c-radio__input {
+    border-color: var(--c-color-accent);
+  }
+
+  .c-radio--is-disabled,
+  .c-radio__input:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}

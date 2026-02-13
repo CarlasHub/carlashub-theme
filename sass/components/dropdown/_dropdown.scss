@@ -1,0 +1,74 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-dropdown {
+    position: relative;
+    display: inline-flex;
+    font-family: var(--c-font-sans);
+  }
+
+  .c-dropdown__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--c-space-sm);
+    padding: var(--c-space-sm) var(--c-space-lg);
+    border-radius: var(--c-radius-md);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    color: var(--c-color-text);
+    cursor: pointer;
+    @include mixins.transition-base;
+    @include mixins.focus-ring(var(--c-radius-md));
+  }
+
+  .c-dropdown__panel {
+    position: absolute;
+    top: calc(100% + var(--c-space-sm));
+    left: 0;
+    min-width: 12rem;
+    padding: var(--c-space-sm);
+    border-radius: var(--c-radius-md);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    box-shadow: var(--c-shadow-md);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+    transition: opacity var(--c-motion-fast) var(--c-motion-ease), transform var(--c-motion-fast) var(--c-motion-ease);
+  }
+
+  .c-dropdown__item {
+    display: flex;
+    align-items: center;
+    gap: var(--c-space-sm);
+    padding: var(--c-space-sm) var(--c-space-md);
+    border-radius: var(--c-radius-sm);
+    color: var(--c-color-text);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .c-dropdown__item:hover {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-dropdown--is-open .c-dropdown__panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .c-dropdown--a .c-dropdown__trigger {
+    background: var(--c-color-accent);
+    border-color: var(--c-color-accent);
+    color: var(--c-color-accent-contrast);
+  }
+
+  .c-dropdown--b .c-dropdown__trigger {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-dropdown--c .c-dropdown__trigger {
+    border-color: var(--c-color-border-strong);
+  }
+}

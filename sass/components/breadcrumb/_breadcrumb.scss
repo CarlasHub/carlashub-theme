@@ -1,0 +1,40 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--c-space-sm);
+    font-family: var(--c-font-sans);
+    font-size: var(--c-font-size-sm);
+    color: var(--c-color-text-muted);
+  }
+
+  .c-breadcrumb__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--c-space-sm);
+  }
+
+  .c-breadcrumb__link {
+    color: var(--c-color-text);
+    text-decoration: none;
+    @include mixins.focus-ring(var(--c-radius-sm));
+  }
+
+  .c-breadcrumb__separator {
+    color: var(--c-color-text-subtle);
+  }
+
+  .c-breadcrumb--a {
+    color: var(--c-color-text-muted);
+  }
+
+  .c-breadcrumb--b .c-breadcrumb__link {
+    text-decoration: underline;
+  }
+
+  .c-breadcrumb--c {
+    font-size: var(--c-font-size-xs);
+  }
+}

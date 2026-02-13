@@ -1,0 +1,59 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-table-row-actions {
+    position: relative;
+    display: inline-flex;
+    gap: var(--c-space-xs);
+  }
+
+  .c-table-row-actions__trigger {
+    padding: var(--c-space-xs) var(--c-space-sm);
+    border-radius: var(--c-radius-sm);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    cursor: pointer;
+    @include mixins.focus-ring(var(--c-radius-sm));
+  }
+
+  .c-table-row-actions__menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + var(--c-space-xs));
+    min-width: 10rem;
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    border-radius: var(--c-radius-md);
+    padding: var(--c-space-xs);
+    box-shadow: var(--c-shadow-md);
+    display: none;
+  }
+
+  .c-table-row-actions__item {
+    display: block;
+    padding: var(--c-space-xs) var(--c-space-md);
+    border-radius: var(--c-radius-sm);
+    text-decoration: none;
+    color: var(--c-color-text);
+  }
+
+  .c-table-row-actions__item:hover {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-table-row-actions--is-open .c-table-row-actions__menu {
+    display: block;
+  }
+
+  .c-table-row-actions--a .c-table-row-actions__trigger {
+    border-color: var(--c-color-border);
+  }
+
+  .c-table-row-actions--b .c-table-row-actions__trigger {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-table-row-actions--c .c-table-row-actions__trigger {
+    border-color: var(--c-color-border-strong);
+  }
+}

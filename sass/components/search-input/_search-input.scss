@@ -1,0 +1,57 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-search-input {
+    position: relative;
+    display: grid;
+    gap: var(--c-space-xs);
+    font-family: var(--c-font-sans);
+  }
+
+  .c-search-input__field {
+    width: 100%;
+    padding: var(--c-space-sm) var(--c-space-xl) var(--c-space-sm) var(--c-space-md);
+    border-radius: var(--c-radius-md);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    color: var(--c-color-text);
+    @include mixins.transition-base;
+    @include mixins.focus-ring(var(--c-radius-md));
+  }
+
+  .c-search-input__icon {
+    position: absolute;
+    right: var(--c-space-sm);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--c-color-text-muted);
+  }
+
+  .c-search-input__clear {
+    position: absolute;
+    right: var(--c-space-xl);
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    @include mixins.focus-ring(var(--c-radius-sm));
+  }
+
+  .c-search-input--a .c-search-input__field {
+    background: var(--c-color-surface);
+  }
+
+  .c-search-input--b .c-search-input__field {
+    background: var(--c-color-surface-alt);
+  }
+
+  .c-search-input--c .c-search-input__field {
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-search-input--is-disabled .c-search-input__field {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}

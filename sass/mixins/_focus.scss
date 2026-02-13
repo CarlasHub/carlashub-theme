@@ -1,0 +1,17 @@
+@mixin focus-ring($radius: var(--c-radius-md)) {
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 var(--c-focus-width) var(--c-color-focus),
+      0 0 0 calc(var(--c-focus-width) + var(--c-focus-offset)) rgba(31, 91, 214, 0.25);
+    border-radius: $radius;
+  }
+}
+
+@mixin transition-base {
+  transition: background-color var(--c-motion-normal) var(--c-motion-ease),
+    border-color var(--c-motion-normal) var(--c-motion-ease),
+    color var(--c-motion-normal) var(--c-motion-ease),
+    box-shadow var(--c-motion-normal) var(--c-motion-ease),
+    transform var(--c-motion-fast) var(--c-motion-ease);
+}

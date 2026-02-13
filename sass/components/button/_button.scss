@@ -1,0 +1,100 @@
+@use "../../mixins" as mixins;
+
+@layer components {
+  .c-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--c-space-sm);
+    padding: var(--c-space-sm) var(--c-space-lg);
+    border-radius: var(--c-radius-md);
+    border: 1px solid var(--c-color-border);
+    background: var(--c-color-surface);
+    color: var(--c-color-text);
+    font-family: var(--c-font-sans);
+    font-size: var(--c-font-size-sm);
+    font-weight: var(--c-font-weight-semibold);
+    line-height: var(--c-line-height-tight);
+    cursor: pointer;
+    text-decoration: none;
+    @include mixins.transition-base;
+    @include mixins.focus-ring(var(--c-radius-md));
+  }
+
+  .c-button__icon {
+    width: 1rem;
+    height: 1rem;
+    display: inline-flex;
+  }
+
+  .c-button__label {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .c-button__spinner {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: currentColor;
+    animation: c-spin var(--c-motion-normal) linear infinite;
+  }
+
+  .c-button:hover {
+    background: var(--c-color-surface-alt);
+    border-color: var(--c-color-border-strong);
+  }
+
+  .c-button:active,
+  .c-button--is-active {
+    transform: translateY(1px);
+  }
+
+  .c-button--a {
+    background: var(--c-color-accent);
+    border-color: var(--c-color-accent);
+    color: var(--c-color-accent-contrast);
+  }
+
+  .c-button--a:hover {
+    filter: brightness(0.98);
+  }
+
+  .c-button--b {
+    background: var(--c-color-surface);
+    border-color: var(--c-color-border-strong);
+    color: var(--c-color-text);
+  }
+
+  .c-button--c {
+    background: transparent;
+    border-color: transparent;
+    color: var(--c-color-accent);
+  }
+
+  .c-button--c:hover {
+    background: rgba(47, 111, 237, 0.08);
+    border-color: rgba(47, 111, 237, 0.2);
+  }
+
+  .c-button--is-disabled,
+  .c-button[disabled] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .c-button--is-loading {
+    cursor: progress;
+  }
+
+  .c-button--is-loading .c-button__label {
+    opacity: 0.6;
+  }
+
+  @keyframes c-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@layer components {
+  .c-progress {
+    width: 100%;
+    height: 0.5rem;
+    background: var(--c-color-surface-alt);
+    border-radius: var(--c-radius-pill);
+    overflow: hidden;
+  }
+
+  .c-progress__bar {
+    height: 100%;
+    width: 0;
+    background: var(--c-color-accent);
+    transition: width var(--c-motion-normal) var(--c-motion-ease);
+  }
+
+  .c-progress--a .c-progress__bar {
+    background: var(--c-color-accent);
+    width: 40%;
+  }
+
+  .c-progress--b .c-progress__bar {
+    background: var(--c-color-success);
+    width: 70%;
+  }
+
+  .c-progress--c .c-progress__bar {
+    background: var(--c-color-danger);
+    width: 90%;
+  }
+}
