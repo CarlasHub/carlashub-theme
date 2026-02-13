@@ -2741,6 +2741,11 @@
   .post-cards .card > * {
     min-width: 0;
   }
+  .post-cards .card > * {
+    padding: 1rem;
+    text-align: center;
+    min-width: 0;
+  }
   .post-cards .wp-block-post-excerpt p,
   .is-style-cards .wp-block-post-excerpt p {
     margin: 0;
