@@ -2770,6 +2770,8 @@
   }
   .wp-block-post-terms a {
     color: var(--c-color-text-subtle);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
   .wp-block-post-terms a:hover {
     color: var(--c-color-brass);
