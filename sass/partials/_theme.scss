@@ -65,8 +65,9 @@
 
   .site-nav .wp-block-navigation-item__content {
     color: var(--c-color-text-subtle);
-    padding: 0.35rem 0.2rem;
-    border-bottom: 1px solid transparent;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid transparent;
+    border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 0.75rem;
@@ -74,13 +75,14 @@
 
   .site-nav .wp-block-navigation-item__content:hover {
     color: var(--c-color-brass);
-    border-bottom-color: var(--c-color-border-strong);
+    border-color: var(--c-color-border-strong);
+    background: rgba(207, 157, 123, 0.08);
   }
 
   .site-nav .wp-block-navigation-item__content:focus-visible {
     outline: 2px solid var(--c-color-brass);
     outline-offset: 3px;
-    border-bottom-color: transparent;
+    border-color: transparent;
   }
 
   .wp-block-navigation__submenu-container {
@@ -354,6 +356,18 @@
     border-radius: 6px;
   }
 
+  .wp-block-post-featured-image {
+    border-radius: 28% 34% 22% 40% / 26% 20% 44% 36%;
+    overflow: hidden;
+  }
+
+  .wp-block-post-featured-image img {
+    border-radius: 28% 34% 22% 40% / 26% 20% 44% 36%;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   .eyebrow {
     font-family: var(--c-font-sans);
     text-transform: uppercase;
@@ -368,6 +382,7 @@
     border-radius: 6px;
     padding: var(--c-space-md);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    min-width: 0;
   }
 
   .card:hover {
@@ -385,6 +400,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    min-width: 0;
   }
 
   .post-meta,
@@ -392,12 +408,24 @@
     font-size: 0.85rem;
     color: var(--c-color-text-subtle);
     gap: 0.5rem;
+    flex-wrap: wrap;
   }
 
   .wp-block-post-title {
     font-size: 3rem;
     letter-spacing: 0.02em;
     margin-bottom: var(--c-space-sm);
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .wp-block-post-title a {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .wp-block-post-excerpt {
+    overflow-wrap: anywhere;
   }
 
   .wp-block-post-content {

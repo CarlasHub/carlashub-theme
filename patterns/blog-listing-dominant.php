@@ -8,6 +8,9 @@
 ?>
 <!-- wp:group {"className":"section section--dominant is-style-editorial-full","layout":{"type":"constrained"}} -->
 <div class="wp-block-group section section--dominant is-style-editorial-full">
+  <!-- wp:heading {"level":2} -->
+  <h2>Latest posts</h2>
+  <!-- /wp:heading -->
   <!-- wp:query {"query":{"perPage":8,"postType":"post","order":"desc","orderBy":"date"}} -->
   <div class="wp-block-query">
     <!-- wp:post-template {"className":"post-cards is-style-cards"} -->
@@ -16,7 +19,7 @@
         <!-- wp:post-featured-image {"isLink":true,"sizeSlug":"large"} /-->
         <!-- wp:group {"className":"card__body","layout":{"type":"constrained"}} -->
         <div class="wp-block-group card__body">
-          <!-- wp:post-title {"isLink":true} /-->
+          <!-- wp:post-title {"isLink":true,"level":3} /-->
           <!-- wp:template-part {"slug":"post-meta"} /-->
           <!-- wp:post-excerpt {"moreText":"View more →"} /-->
         </div>

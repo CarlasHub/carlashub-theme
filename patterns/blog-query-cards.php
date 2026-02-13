@@ -19,7 +19,7 @@
         <!-- wp:post-featured-image {"isLink":true,"sizeSlug":"large"} /-->
         <!-- wp:group {"className":"card__body","layout":{"type":"constrained"}} -->
         <div class="wp-block-group card__body">
-          <!-- wp:post-title {"isLink":true} /-->
+          <!-- wp:post-title {"isLink":true,"level":3} /-->
           <!-- wp:group {"className":"post-meta","layout":{"type":"flex","justifyContent":"left"}} -->
           <div class="wp-block-group post-meta">
             <!-- wp:post-date /-->

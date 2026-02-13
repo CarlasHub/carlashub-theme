@@ -8,6 +8,9 @@
 ?>
 <!-- wp:group {"className":"section section--secondary is-style-editorial-wide","layout":{"type":"constrained"}} -->
 <div class="wp-block-group section section--secondary is-style-editorial-wide">
+  <!-- wp:heading {"level":2} -->
+  <h2>Journal</h2>
+  <!-- /wp:heading -->
   <!-- wp:query {"query":{"perPage":6,"postType":"post","order":"desc","orderBy":"date"}} -->
   <div class="wp-block-query">
     <!-- wp:post-template {"className":"post-cards post-cards--compact"} -->
@@ -20,7 +23,7 @@
         <!-- /wp:column -->
         <!-- wp:column {"width":"70%"} -->
         <div class="wp-block-column" style="flex-basis:70%">
-          <!-- wp:post-title {"isLink":true} /-->
+          <!-- wp:post-title {"isLink":true,"level":3} /-->
           <!-- wp:template-part {"slug":"post-meta"} /-->
           <!-- wp:post-excerpt {"moreText":"View more →"} /-->
         </div>

@@ -25,7 +25,7 @@
         <div class="wp-block-column" style="flex-basis:55%">
           <!-- wp:group {"className":"card"} -->
           <div class="wp-block-group card">
-            <!-- wp:post-title {"isLink":true} /-->
+            <!-- wp:post-title {"isLink":true,"level":3} /-->
             <!-- wp:group {"className":"post-meta","layout":{"type":"flex","justifyContent":"left"}} -->
             <div class="wp-block-group post-meta">
               <!-- wp:post-date /-->

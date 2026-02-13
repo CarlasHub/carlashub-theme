@@ -162,7 +162,7 @@
         <!-- wp:post-featured-image {"isLink":true,"sizeSlug":"large"} /-->
         <!-- wp:group {"className":"card__body","layout":{"type":"constrained"}} -->
         <div class="wp-block-group card__body">
-          <!-- wp:post-title {"isLink":true} /-->
+          <!-- wp:post-title {"isLink":true,"level":3} /-->
           <!-- wp:template-part {"slug":"post-meta"} /-->
           <!-- wp:post-excerpt {"moreText":"View more →"} /-->
         </div>
