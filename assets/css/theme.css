@@ -2349,22 +2349,9 @@
 @layer components {
   .site-header {
     padding: var(--c-space-md) 0;
-    position: relative;
     border-bottom: 0;
     background: rgba(12, 21, 25, 0.75);
     backdrop-filter: blur(12px);
-  }
-  .site-header::after {
-    content: "";
-    position: absolute;
-    left: clamp(16px, 4vw, 64px);
-    right: clamp(16px, 4vw, 64px);
-    bottom: -10px;
-    height: 20px;
-    border: 1px solid var(--c-color-border);
-    border-top: 0;
-    border-radius: 0 0 999px 999px;
-    pointer-events: none;
   }
   .site-header__inner {
     gap: var(--c-space-md);
