@@ -2352,6 +2352,13 @@
   }
   .site-header__inner {
     gap: var(--c-space-md);
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+    border: 1px solid var(--c-color-border-strong);
+    border-radius: 24% 38% 18% 46%/40% 22% 34% 26%;
+    padding: 0.75rem 1rem;
+    background: rgba(207, 157, 123, 0.06);
   }
   .site-title {
     font-family: var(--c-font-serif);
@@ -2389,10 +2396,7 @@
     border-color: transparent;
   }
   .site-nav .wp-block-navigation__container {
-    border: 1px solid var(--c-color-border-strong);
-    border-radius: 24% 38% 18% 46%/40% 22% 34% 26%;
-    padding: 0.35rem 0.6rem;
-    background: rgba(207, 157, 123, 0.06);
+    padding: 0;
   }
   .wp-block-navigation__submenu-container {
     opacity: 0;
