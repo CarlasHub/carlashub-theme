@@ -393,12 +393,12 @@
     background: var(--c-color-raised);
     border: 1px solid var(--c-color-border);
     border-radius: 6px;
-    padding: var(--c-space-md);
+    padding: var(--c-space-md) var(--c-space-md) var(--c-space-lg);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--c-space-sm);
+    gap: var(--c-space-md);
     position: relative;
   }
 
@@ -419,6 +419,7 @@
     gap: 0.75rem;
     min-width: 0;
     flex: 1 1 auto;
+    padding-top: 0.25rem;
   }
 
   .post-meta,
@@ -448,6 +449,7 @@
 
   .post-cards .wp-block-post-featured-image,
   .is-style-cards .wp-block-post-featured-image {
+    display: block;
     margin: 0 0 var(--c-space-sm);
     line-height: 0;
     flex-shrink: 0;
@@ -484,6 +486,11 @@
   .post-cards .post-meta,
   .is-style-cards .post-meta {
     overflow-wrap: anywhere;
+  }
+
+  .post-cards .card > * + *,
+  .is-style-cards .card > * + * {
+    margin-top: 0;
   }
 
   .wp-block-post-content {
