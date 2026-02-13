@@ -437,6 +437,10 @@
     overflow: visible;
   }
 
+  .card__body > *:last-child {
+    margin-top: auto;
+  }
+
   .post-meta,
   .post-terms {
     font-size: 0.85rem;
@@ -468,13 +472,17 @@
     margin: 0 0 var(--c-space-sm);
     line-height: 0;
     flex-shrink: 0;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
   }
 
   .post-cards .wp-block-post-featured-image img,
   .is-style-cards .wp-block-post-featured-image img {
-    aspect-ratio: 4 / 3;
     object-fit: cover;
     height: auto;
+    width: 100%;
+    display: block;
   }
 
   .post-cards .wp-block-post-title,
@@ -542,32 +550,39 @@
 
   .post-cards .card,
   .is-style-cards .card {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    gap: var(--c-space-md);
+    height: auto;
+    min-height: 0;
     overflow: visible;
   }
 
-  .post-cards .card,
-  .is-style-cards .card {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
+  .post-cards .card::before,
+  .is-style-cards .card::before,
+  .post-cards .card::after,
+  .is-style-cards .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: var(--c-blob-shape);
   }
 
   .post-cards .card::before,
   .is-style-cards .card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: var(--c-blob-shape);
     background: var(--c-color-raised);
     border: 1px solid var(--c-color-border);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-    z-index: 0;
   }
 
-  .post-cards .card > *,
-  .is-style-cards .card > * {
-    position: relative;
-    z-index: 1;
+  .post-cards .card::after,
+  .is-style-cards .card::after {
+    border: 1px solid rgba(207, 157, 123, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(207, 157, 123, 0.05);
   }
 
   :root {
@@ -617,7 +632,7 @@
 
   .post-cards .card,
   .is-style-cards .card {
-    padding-top: calc(var(--c-space-md) + var(--c-card-stagger));
+    padding: calc(var(--c-space-md) + var(--c-card-stagger)) var(--c-space-md) var(--c-space-lg);
   }
 
   @media (max-width: 60rem) {
