@@ -145,6 +145,12 @@
 
   .site-nav .wp-block-navigation__submenu-icon {
     color: var(--c-color-brass);
+    background: transparent;
+  }
+
+  .site-nav .wp-block-navigation-item:focus-within .wp-block-navigation__submenu-icon {
+    color: var(--c-color-coffee);
+    background: transparent;
   }
 
   .site-search {
