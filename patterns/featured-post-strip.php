@@ -33,11 +33,11 @@
               <!-- wp:post-terms {"term":"category"} /-->
             </div>
             <!-- /wp:group -->
-            <!-- wp:post-excerpt {"moreText":"Read the story"} /-->
+            <!-- wp:post-excerpt {"moreText":"View more →"} /-->
             <!-- wp:buttons -->
             <div class="wp-block-buttons">
               <!-- wp:button -->
-              <div class="wp-block-button"><a class="wp-block-button__link">Read more</a></div>
+              <div class="wp-block-button"><a class="wp-block-button__link">View more →</a></div>
               <!-- /wp:button -->
             </div>
             <!-- /wp:buttons -->

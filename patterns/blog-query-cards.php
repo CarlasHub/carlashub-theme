@@ -29,7 +29,7 @@
             <!-- wp:post-terms {"term":"category"} /-->
           </div>
           <!-- /wp:group -->
-          <!-- wp:post-excerpt {"moreText":"Read the essay"} /-->
+          <!-- wp:post-excerpt {"moreText":"View more →"} /-->
         </div>
         <!-- /wp:group -->
       </div>

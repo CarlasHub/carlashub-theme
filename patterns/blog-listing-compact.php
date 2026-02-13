@@ -22,7 +22,7 @@
         <div class="wp-block-column" style="flex-basis:70%">
           <!-- wp:post-title {"isLink":true} /-->
           <!-- wp:template-part {"slug":"post-meta"} /-->
-          <!-- wp:post-excerpt {"moreText":"Read"} /-->
+          <!-- wp:post-excerpt {"moreText":"View more →"} /-->
         </div>
         <!-- /wp:column -->
       </div>

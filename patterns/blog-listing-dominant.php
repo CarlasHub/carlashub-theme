@@ -18,7 +18,7 @@
         <div class="wp-block-group card__body">
           <!-- wp:post-title {"isLink":true} /-->
           <!-- wp:template-part {"slug":"post-meta"} /-->
-          <!-- wp:post-excerpt {"moreText":"Read the essay"} /-->
+          <!-- wp:post-excerpt {"moreText":"View more →"} /-->
         </div>
         <!-- /wp:group -->
       </div>
