@@ -2342,6 +2342,9 @@
     outline: var(--c-focus-width) solid var(--c-color-focus);
     outline-offset: var(--c-focus-offset);
   }
+  :where(.is-layout-constrained) > * {
+    margin-block-start: 3px !important;
+  }
 }
 @layer components {
   .site-header {
@@ -2696,6 +2699,7 @@
     color: var(--c-color-text-subtle);
     gap: 0.5rem;
     flex-wrap: wrap;
+    justify-content: center;
   }
   .wp-block-post-title {
     font-size: 3rem;
