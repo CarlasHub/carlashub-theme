@@ -6,8 +6,8 @@
  * Keywords: testimonials
  */
 ?>
-<!-- wp:group {"className":"testimonials section section--quiet","layout":{"type":"constrained"}} -->
-<div class="wp-block-group testimonials section section--quiet">
+<!-- wp:group {"className":"testimonials section section--quiet is-style-editorial-narrow","layout":{"type":"constrained"}} -->
+<div class="wp-block-group testimonials section section--quiet is-style-editorial-narrow">
   <!-- wp:heading {"level":2} -->
   <h2>Words from the circle</h2>
   <!-- /wp:heading -->

@@ -1,13 +1,13 @@
 <?php
 /**
- * Title: Portfolio — Case Study Dense
+ * Title: Case Study — Dense Narrative
  * Slug: carlashub/case-study-dense
- * Categories: carlashub-page-portfolio, carlashub-layout
+ * Categories: carlashub-page-case-study, carlashub-layout
  * Keywords: case study, dense
  */
 ?>
-<!-- wp:group {"className":"section section--dense is-style-editorial-wide","layout":{"type":"constrained"}} -->
-<div class="wp-block-group section section--dense is-style-editorial-wide">
+<!-- wp:group {"className":"section section--dense is-style-editorial-narrow","layout":{"type":"constrained"}} -->
+<div class="wp-block-group section section--dense is-style-editorial-narrow">
   <!-- wp:columns -->
   <div class="wp-block-columns">
     <!-- wp:column {"width":"30%"} -->

@@ -25,11 +25,15 @@
       <!-- /wp:group -->
     <!-- /wp:post-template -->
 
-    <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
-      <!-- wp:query-pagination-previous /-->
-      <!-- wp:query-pagination-numbers /-->
-      <!-- wp:query-pagination-next /-->
-    <!-- /wp:query-pagination -->
+    <!-- wp:group {"className":"is-style-editorial-wide"} -->
+    <div class="wp-block-group is-style-editorial-wide">
+      <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
+        <!-- wp:query-pagination-previous /-->
+        <!-- wp:query-pagination-numbers /-->
+        <!-- wp:query-pagination-next /-->
+      <!-- /wp:query-pagination -->
+    </div>
+    <!-- /wp:group -->
 
     <!-- wp:query-no-results -->
     <div class="wp-block-query-no-results">

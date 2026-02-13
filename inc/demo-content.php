@@ -41,28 +41,28 @@ function carlashub_seed_demo_content( $force = false ) {
 
 	$pages = array(
 		'Home' => array(
-			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/hero-editorial-centered\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/value-prop-asym\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/dense-content-grid\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/services-circular\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/featured-post-strip\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/blog-listing-compact\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/newsletter\"} /-->",
+			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/hero-editorial-centered\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/value-prop-asym\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/services-circular\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/blog-listing-dominant\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/testimonials\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
 		),
 		'About' => array(
-			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/hero-split-framed\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/about-narrative\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/about-portrait\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/testimonials\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
+			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/about-narrative\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/about-portrait\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/content-split-right\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/dense-content-grid\"} /-->",
 		),
 		'Services' => array(
 			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/services-circular\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/content-split-right\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/pricing\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
 		),
 		'Portfolio' => array(
-			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/portfolio-intro\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/featured-project\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/case-study-dense\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/case-study-split\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/portfolio-grid-offset\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/portfolio-grid\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
+			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/portfolio-intro\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/featured-project\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/portfolio-grid-offset\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/portfolio-grid\"} /-->",
 		),
 		'Blog' => array(
-			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/blog-intro\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/blog-listing-dominant\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/newsletter\"} /-->",
+			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/blog-intro\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/blog-listing-dominant\"} /-->",
 		),
 		'Contact' => array(
-			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/contact\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/faq\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
+			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/contact\"} /-->",
 		),
 		'Privacy Policy' => array(
 			'content' => "<!-- wp:heading {\"level\":2} --><h2>Privacy Policy</h2><!-- /wp:heading --><!-- wp:paragraph --><p>We respect your privacy. Replace this text with your official policy.</p><!-- /wp:paragraph -->",
 		),
 		'Style Guide' => array(
-			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/style-guide\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/logo-strip\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
+			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/style-guide\"} /-->",
 		),
 		'Pattern Library' => array(
 			'content' => "<!-- wp:pattern {\"slug\":\"carlashub/pattern-library\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
@@ -125,12 +125,24 @@ function carlashub_seed_demo_content( $force = false ) {
 		'Values'              => 'values',
 	);
 
+	$child_page_content = array(
+		'Ritual House'    => "<!-- wp:pattern {\"slug\":\"carlashub/case-study-intro-ritual\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/case-study-hero\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/content-split-left\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/case-study-outcome-ritual\"} /-->",
+		'Velvet Archive'  => "<!-- wp:pattern {\"slug\":\"carlashub/case-study-intro-velvet\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/case-study-hero\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/content-split-right\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/case-study-outcome-generic\"} /-->",
+		'Obsidian Studio' => "<!-- wp:pattern {\"slug\":\"carlashub/content-split-left\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
+		'Brand Strategy'      => "<!-- wp:pattern {\"slug\":\"carlashub/content-split-left\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
+		'Website Development' => "<!-- wp:pattern {\"slug\":\"carlashub/content-split-right\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
+		'Editorial Design'    => "<!-- wp:pattern {\"slug\":\"carlashub/content-split-left\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
+		'Studio Process'      => "<!-- wp:pattern {\"slug\":\"carlashub/content-split-right\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
+		'Values'              => "<!-- wp:pattern {\"slug\":\"carlashub/content-split-left\"} /-->\n<!-- wp:pattern {\"slug\":\"carlashub/cta-banner\"} /-->",
+	);
+
 	foreach ( $child_pages as $parent_title => $children ) {
 		if ( empty( $page_ids[ $parent_title ] ) ) {
 			continue;
 		}
 
 		foreach ( $children as $child_title ) {
+			$child_content = isset( $child_page_content[ $child_title ] ) ? $child_page_content[ $child_title ] : '<!-- wp:pattern {"slug":"carlashub/content-split-left"} /--><!-- wp:pattern {"slug":"carlashub/cta-banner"} /-->';
 			$existing = get_page_by_title( $child_title );
 			if ( $existing ) {
 				wp_update_post(
@@ -138,7 +150,7 @@ function carlashub_seed_demo_content( $force = false ) {
 						'ID'          => $existing->ID,
 						'post_parent' => $page_ids[ $parent_title ],
 						'post_status' => 'publish',
-						'post_content' => '<!-- wp:pattern {"slug":"carlashub/content-split-left"} /--><!-- wp:pattern {"slug":"carlashub/cta-banner"} /-->',
+						'post_content' => $child_content,
 						'post_name'   => isset( $child_slugs[ $child_title ] ) ? $child_slugs[ $child_title ] : $existing->post_name,
 					)
 				);
@@ -148,7 +160,7 @@ function carlashub_seed_demo_content( $force = false ) {
 			wp_insert_post(
 				array(
 					'post_title'   => $child_title,
-					'post_content' => '<!-- wp:pattern {"slug":"carlashub/content-split-left"} /--><!-- wp:pattern {"slug":"carlashub/cta-banner"} /-->',
+					'post_content' => $child_content,
 					'post_status'  => 'publish',
 					'post_type'    => 'page',
 					'post_parent'  => $page_ids[ $parent_title ],
@@ -202,7 +214,7 @@ function carlashub_seed_demo_content( $force = false ) {
 			wp_update_post(
 				array(
 					'ID'           => $post_id,
-					'post_content' => '<!-- wp:paragraph --><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae orci vitae metus gravida egestas. Quisque dictum mauris eget neque vestibulum, sed condimentum justo cursus.</p><!-- /wp:paragraph -->',
+					'post_content' => '<!-- wp:paragraph --><p>Quick update from Carla&rsquo;s Hub. This entry will be expanded with the final content soon&mdash;thanks for reading and check back shortly.</p><!-- /wp:paragraph -->',
 					'post_status'  => 'publish',
 				)
 			);
@@ -210,7 +222,7 @@ function carlashub_seed_demo_content( $force = false ) {
 			$post_id = wp_insert_post(
 				array(
 					'post_title'   => $title,
-					'post_content' => '<!-- wp:paragraph --><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae orci vitae metus gravida egestas. Quisque dictum mauris eget neque vestibulum, sed condimentum justo cursus.</p><!-- /wp:paragraph -->',
+					'post_content' => '<!-- wp:paragraph --><p>Quick update from Carla&rsquo;s Hub. This entry will be expanded with the final content soon&mdash;thanks for reading and check back shortly.</p><!-- /wp:paragraph -->',
 					'post_status'  => 'publish',
 					'post_type'    => 'post',
 					'post_category'=> $category_ids,

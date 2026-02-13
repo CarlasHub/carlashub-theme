@@ -261,6 +261,12 @@ function carlashub_register_pattern_categories() {
 		)
 	);
 	register_block_pattern_category(
+		'carlashub-page-case-study',
+		array(
+			'label' => __( 'CarlasHub — Case Study', 'carlashub' ),
+		)
+	);
+	register_block_pattern_category(
 		'carlashub-layout',
 		array(
 			'label' => __( 'CarlasHub — Layout Variants', 'carlashub' ),

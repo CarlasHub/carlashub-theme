@@ -33,6 +33,11 @@
   <!-- wp:pattern {"slug":"carlashub/featured-project"} /-->
   <!-- wp:pattern {"slug":"carlashub/case-study-dense"} /-->
   <!-- wp:pattern {"slug":"carlashub/case-study-split"} /-->
+  <!-- wp:pattern {"slug":"carlashub/case-study-hero"} /-->
+  <!-- wp:pattern {"slug":"carlashub/case-study-intro-ritual"} /-->
+  <!-- wp:pattern {"slug":"carlashub/case-study-intro-velvet"} /-->
+  <!-- wp:pattern {"slug":"carlashub/case-study-outcome-ritual"} /-->
+  <!-- wp:pattern {"slug":"carlashub/case-study-outcome-generic"} /-->
   <!-- wp:pattern {"slug":"carlashub/featured-post-strip"} /-->
   <!-- wp:pattern {"slug":"carlashub/blog-intro"} /-->
   <!-- wp:pattern {"slug":"carlashub/blog-listing-dominant"} /-->

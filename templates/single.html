@@ -2,18 +2,47 @@
 
 <!-- wp:group {"tagName":"main","className":"site-main","layout":{"type":"constrained"}} -->
 <main class="wp-block-group site-main">
-  <!-- wp:post-title {"level":1} /-->
-  <!-- wp:template-part {"slug":"post-meta"} /-->
-  <!-- wp:post-featured-image {"sizeSlug":"large"} /-->
-  <!-- wp:post-content /-->
-  <!-- wp:group {"className":"post-terms","layout":{"type":"flex","justifyContent":"left"}} -->
-  <div class="wp-block-group post-terms">
-    <!-- wp:post-terms {"term":"category"} /-->
-    <!-- wp:post-terms {"term":"post_tag"} /-->
+  <!-- wp:group {"className":"section section--secondary is-style-editorial-narrow","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group section section--secondary is-style-editorial-narrow">
+    <!-- wp:post-title {"level":1} /-->
+    <!-- wp:template-part {"slug":"post-meta"} /-->
   </div>
   <!-- /wp:group -->
-  <!-- wp:template-part {"slug":"post-navigation"} /-->
-  <!-- wp:template-part {"slug":"comments"} /-->
+
+  <!-- wp:group {"className":"section section--secondary is-style-editorial-full","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group section section--secondary is-style-editorial-full">
+    <!-- wp:post-featured-image {"sizeSlug":"large"} /-->
+  </div>
+  <!-- /wp:group -->
+
+  <!-- wp:group {"className":"section section--secondary is-style-editorial-narrow","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group section section--secondary is-style-editorial-narrow">
+    <!-- wp:post-content /-->
+  </div>
+  <!-- /wp:group -->
+
+  <!-- wp:group {"className":"section section--quiet is-style-editorial-narrow","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group section section--quiet is-style-editorial-narrow">
+    <!-- wp:group {"className":"post-terms","layout":{"type":"flex","justifyContent":"left"}} -->
+    <div class="wp-block-group post-terms">
+      <!-- wp:post-terms {"term":"category"} /-->
+      <!-- wp:post-terms {"term":"post_tag"} /-->
+    </div>
+    <!-- /wp:group -->
+  </div>
+  <!-- /wp:group -->
+
+  <!-- wp:group {"className":"section section--secondary is-style-editorial-wide","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group section section--secondary is-style-editorial-wide">
+    <!-- wp:template-part {"slug":"post-navigation"} /-->
+  </div>
+  <!-- /wp:group -->
+
+  <!-- wp:group {"className":"section section--secondary is-style-editorial-wide","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group section section--secondary is-style-editorial-wide">
+    <!-- wp:template-part {"slug":"comments"} /-->
+  </div>
+  <!-- /wp:group -->
 </main>
 <!-- /wp:group -->
 

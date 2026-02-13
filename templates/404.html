@@ -2,20 +2,47 @@
 
 <!-- wp:group {"tagName":"main","className":"site-main","layout":{"type":"constrained"}} -->
 <main class="wp-block-group site-main">
-  <!-- wp:heading {"level":1} -->
-  <h1>We lost the thread.</h1>
-  <!-- /wp:heading -->
-  <!-- wp:paragraph -->
-  <p>The page you were seeking has faded. Try a new search or return to the archive.</p>
-  <!-- /wp:paragraph -->
-  <!-- wp:search {"label":"Search","showLabel":false,"buttonText":"Search","buttonUseIcon":true,"className":"is-style-field"} /-->
-  <!-- wp:buttons -->
-  <div class="wp-block-buttons">
-    <!-- wp:button -->
-    <div class="wp-block-button"><a class="wp-block-button__link" href="/">Return home</a></div>
-    <!-- /wp:button -->
+  <!-- wp:group {"className":"section section--secondary is-style-editorial-narrow","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group section section--secondary is-style-editorial-narrow">
+    <!-- wp:heading {"level":1} -->
+    <h1>We lost the thread.</h1>
+    <!-- /wp:heading -->
+    <!-- wp:paragraph -->
+    <p>The page you were seeking has faded. Try a new search or return to the archive.</p>
+    <!-- /wp:paragraph -->
   </div>
-  <!-- /wp:buttons -->
+  <!-- /wp:group -->
+
+  <!-- wp:group {"className":"section section--ornament is-style-editorial-full","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group section section--ornament is-style-editorial-full">
+    <!-- wp:separator {"className":"is-style-sigil"} /-->
+  </div>
+  <!-- /wp:group -->
+
+  <!-- wp:group {"className":"section section--asym is-style-editorial-wide","layout":{"type":"constrained"}} -->
+  <div class="wp-block-group section section--asym is-style-editorial-wide">
+    <!-- wp:columns -->
+    <div class="wp-block-columns">
+      <!-- wp:column {"width":"70%"} -->
+      <div class="wp-block-column" style="flex-basis:70%">
+        <!-- wp:search {"label":"Search","showLabel":false,"buttonText":"Search","buttonUseIcon":true,"className":"is-style-field"} /-->
+      </div>
+      <!-- /wp:column -->
+      <!-- wp:column {"width":"30%"} -->
+      <div class="wp-block-column" style="flex-basis:30%">
+        <!-- wp:buttons -->
+        <div class="wp-block-buttons">
+          <!-- wp:button -->
+          <div class="wp-block-button"><a class="wp-block-button__link" href="/">Return home</a></div>
+          <!-- /wp:button -->
+        </div>
+        <!-- /wp:buttons -->
+      </div>
+      <!-- /wp:column -->
+    </div>
+    <!-- /wp:columns -->
+  </div>
+  <!-- /wp:group -->
 </main>
 <!-- /wp:group -->
 

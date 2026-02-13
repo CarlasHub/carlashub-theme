@@ -20,6 +20,11 @@
   <!-- wp:paragraph -->
   <p>This is the long‑form body example. It should feel calm, measured, and editorial—never rushed. The line length remains narrow enough for focus, while the section itself remains dominant through spacing and ornament.</p>
   <!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"section section--quiet is-style-editorial-narrow","layout":{"type":"constrained"}} -->
+<div class="wp-block-group section section--quiet is-style-editorial-narrow">
   <!-- wp:paragraph -->
   <p>Hierarchy ladder in context:</p>
   <!-- /wp:paragraph -->
@@ -90,54 +95,49 @@
 
 <!-- wp:group {"className":"section section--secondary is-style-editorial-wide","layout":{"type":"constrained"}} -->
 <div class="wp-block-group section section--secondary is-style-editorial-wide">
-  <!-- wp:heading {"level":2} --><h2>Interface moments</h2><!-- /wp:heading -->
-  <!-- wp:paragraph --><p>Buttons and forms appear within narrative contexts, not as isolated specimens.</p><!-- /wp:paragraph -->
-  <!-- wp:buttons -->
-  <div class="wp-block-buttons">
-    <!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link">Primary</a></div><!-- /wp:button -->
-    <!-- wp:button {"className":"is-style-ghost"} --><div class="wp-block-button is-style-ghost"><a class="wp-block-button__link">Ghost</a></div><!-- /wp:button -->
-  </div>
-  <!-- /wp:buttons -->
-  <!-- wp:search {"label":"Search","showLabel":false,"buttonText":"Search","buttonUseIcon":true,"className":"is-style-field"} /-->
-  <!-- wp:html -->
-  <form class="sample-form">
-    <label>Name<br/><input type="text" placeholder="Your name"></label><br/>
-    <label>Email<br/><input type="email" placeholder="name@example.com"></label><br/>
-    <label>Topic<br/>
-      <select>
-        <option>Strategy</option>
-        <option>Design</option>
-        <option>Theme Build</option>
-      </select>
-    </label><br/>
-    <label>Message<br/><textarea rows="4" placeholder="Tell us about your project"></textarea></label><br/>
-    <label><input type="checkbox"> Subscribe to updates</label><br/>
-    <label><input type="radio" name="priority"> Standard</label>
-    <label><input type="radio" name="priority"> Priority</label><br/>
-    <button type="submit">Submit</button>
-  </form>
-  <!-- /wp:html -->
-</div>
-<!-- /wp:group -->
-
-<!-- wp:group {"className":"section section--secondary section--asym is-style-editorial-wide","layout":{"type":"constrained"}} -->
-<div class="wp-block-group section section--secondary section--asym is-style-editorial-wide">
   <!-- wp:columns -->
   <div class="wp-block-columns">
     <!-- wp:column {"width":"55%"} -->
     <div class="wp-block-column" style="flex-basis:55%">
-      <!-- wp:heading {"level":2} --><h2>Cards & surfaces</h2><!-- /wp:heading -->
+      <!-- wp:heading {"level":2} --><h2>Interface moments</h2><!-- /wp:heading -->
+      <!-- wp:paragraph --><p>Buttons and forms appear within narrative contexts, not as isolated specimens.</p><!-- /wp:paragraph -->
+      <!-- wp:buttons -->
+      <div class="wp-block-buttons">
+        <!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link">Primary</a></div><!-- /wp:button -->
+        <!-- wp:button {"className":"is-style-ghost"} --><div class="wp-block-button is-style-ghost"><a class="wp-block-button__link">Ghost</a></div><!-- /wp:button -->
+      </div>
+      <!-- /wp:buttons -->
+      <!-- wp:search {"label":"Search","showLabel":false,"buttonText":"Search","buttonUseIcon":true,"className":"is-style-field"} /-->
+      <!-- wp:html -->
+      <form class="sample-form">
+        <label>Name<br/><input type="text" placeholder="Your name"></label><br/>
+        <label>Email<br/><input type="email" placeholder="name@example.com"></label><br/>
+        <label>Topic<br/>
+          <select>
+            <option>Strategy</option>
+            <option>Design</option>
+            <option>Theme Build</option>
+          </select>
+        </label><br/>
+        <label>Message<br/><textarea rows="4" placeholder="Tell us about your project"></textarea></label><br/>
+        <label><input type="checkbox"> Subscribe to updates</label><br/>
+        <label><input type="radio" name="priority"> Standard</label>
+        <label><input type="radio" name="priority"> Priority</label><br/>
+        <button type="submit">Submit</button>
+      </form>
+      <!-- /wp:html -->
+    </div>
+    <!-- /wp:column -->
+    <!-- wp:column {"width":"45%"} -->
+    <div class="wp-block-column" style="flex-basis:45%">
+      <!-- wp:heading {"level":2} --><h2>Cards &amp; surfaces</h2><!-- /wp:heading -->
       <!-- wp:group {"className":"card"} -->
       <div class="wp-block-group card">
         <!-- wp:heading {"level":3} --><h3>Sample Card</h3><!-- /wp:heading -->
         <!-- wp:paragraph --><p>Cards carry secondary narratives and must feel crafted, not default.</p><!-- /wp:paragraph -->
       </div>
       <!-- /wp:group -->
-    </div>
-    <!-- /wp:column -->
-    <!-- wp:column {"width":"45%"} -->
-    <div class="wp-block-column" style="flex-basis:45%">
-      <!-- wp:heading {"level":3} --><h3>Images & frames</h3><!-- /wp:heading -->
+      <!-- wp:heading {"level":3} --><h3>Images &amp; frames</h3><!-- /wp:heading -->
       <!-- wp:image {"sizeSlug":"large","linkDestination":"none","className":"is-style-frame"} -->
       <figure class="wp-block-image size-large is-style-frame"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/placeholder-hero.svg' ) ); ?>" alt=""/></figure>
       <!-- /wp:image -->
@@ -177,7 +177,7 @@
 
 <!-- wp:group {"className":"section section--quiet is-style-editorial-narrow","layout":{"type":"constrained"}} -->
 <div class="wp-block-group section section--quiet is-style-editorial-narrow">
-  <!-- wp:heading {"level":2} --><h2>Utilities & guidance</h2><!-- /wp:heading -->
+  <!-- wp:heading {"level":2} --><h2>Utilities &amp; guidance</h2><!-- /wp:heading -->
   <!-- wp:paragraph --><p>Use styles consistently to maintain editorial rhythm across templates.</p><!-- /wp:paragraph -->
   <!-- wp:table -->
   <figure class="wp-block-table"><table><thead><tr><th>Utility</th><th>Purpose</th></tr></thead><tbody>
