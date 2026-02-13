@@ -2537,9 +2537,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 120px;
-    height: 1px;
+    width: 140px;
+    height: 8px;
     background: var(--c-color-border-strong);
+    border-radius: 28% 34% 22% 40%/26% 20% 44% 36%;
     opacity: 0.6;
   }
   .section--ornament::after {
@@ -2613,7 +2614,18 @@
     overflow: hidden;
   }
   .wp-block-separator {
-    opacity: 0.5;
+    opacity: 0.75;
+    height: 8px;
+    background: var(--c-color-border-strong);
+    border: 0;
+    border-radius: 20% 46% 30% 26%/34% 18% 40% 28%;
+  }
+  .site-footer__rule {
+    height: 8px;
+    border: 0;
+    background: var(--c-color-border-strong);
+    border-radius: 36% 22% 44% 18%/24% 42% 20% 34%;
+    opacity: 0.75;
   }
   .wp-block-quote {
     border-left: 2px solid var(--c-color-brass);
@@ -2794,11 +2806,11 @@
   }
   .post-cards > *:nth-child(3n+2),
   .is-style-cards > *:nth-child(3n+2) {
-    margin-top: 0.75rem;
+    margin-top: 2rem;
   }
   .post-cards > *:nth-child(3n),
   .is-style-cards > *:nth-child(3n) {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
   @media (max-width: 60rem) {
     .post-cards,
@@ -2814,7 +2826,7 @@
     }
     .post-cards > *:nth-child(2n+2),
     .is-style-cards > *:nth-child(2n+2) {
-      margin-top: 1.25rem;
+      margin-top: 1rem;
     }
   }
   @media (max-width: 40rem) {
