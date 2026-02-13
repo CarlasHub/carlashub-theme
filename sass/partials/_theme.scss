@@ -419,26 +419,56 @@
   .post-cards,
   .is-style-cards {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--c-space-md);
     align-items: stretch;
     justify-items: stretch;
   }
 
   .post-cards--dominant {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--c-space-md);
   }
 
   .post-cards .card,
   .is-style-cards .card {
-    border-radius: 26% 32% 24% 38% / 28% 22% 42% 34%;
     overflow: hidden;
   }
 
-  .post-cards .wp-block-post-featured-image img,
-  .is-style-cards .wp-block-post-featured-image img {
-    border-radius: 26% 32% 24% 38% / 28% 22% 42% 34%;
+  .post-cards > *:nth-child(4n+1) .card,
+  .is-style-cards > *:nth-child(4n+1) .card,
+  .post-cards > *:nth-child(4n+1) .wp-block-post-featured-image img,
+  .is-style-cards > *:nth-child(4n+1) .wp-block-post-featured-image img {
+    border-radius: 28% 34% 22% 40% / 26% 20% 44% 36%;
+  }
+
+  .post-cards > *:nth-child(4n+2) .card,
+  .is-style-cards > *:nth-child(4n+2) .card,
+  .post-cards > *:nth-child(4n+2) .wp-block-post-featured-image img,
+  .is-style-cards > *:nth-child(4n+2) .wp-block-post-featured-image img {
+    border-radius: 20% 46% 30% 26% / 34% 18% 40% 28%;
+  }
+
+  .post-cards > *:nth-child(4n+3) .card,
+  .is-style-cards > *:nth-child(4n+3) .card,
+  .post-cards > *:nth-child(4n+3) .wp-block-post-featured-image img,
+  .is-style-cards > *:nth-child(4n+3) .wp-block-post-featured-image img {
+    border-radius: 36% 22% 44% 18% / 24% 42% 20% 34%;
+  }
+
+  .post-cards > *:nth-child(4n) .card,
+  .is-style-cards > *:nth-child(4n) .card,
+  .post-cards > *:nth-child(4n) .wp-block-post-featured-image img,
+  .is-style-cards > *:nth-child(4n) .wp-block-post-featured-image img {
+    border-radius: 24% 38% 18% 46% / 40% 22% 34% 26%;
+  }
+
+  @media (max-width: 60rem) {
+    .post-cards,
+    .post-cards--dominant,
+    .is-style-cards {
+      grid-template-columns: 1fr;
+    }
   }
 
   .post-cards--compact {
