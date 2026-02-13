@@ -68,6 +68,10 @@
     padding: 0.4rem 0.75rem;
     border: 1px solid transparent;
     border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(207, 157, 123, 0.08);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 0.75rem;
@@ -83,6 +87,22 @@
     outline: 2px solid var(--c-color-brass);
     outline-offset: 3px;
     border-color: transparent;
+  }
+
+  .site-nav .wp-block-navigation__container > .wp-block-navigation-item:nth-child(4n+1) .wp-block-navigation-item__content {
+    border-radius: 28% 34% 22% 40% / 26% 20% 44% 36%;
+  }
+
+  .site-nav .wp-block-navigation__container > .wp-block-navigation-item:nth-child(4n+2) .wp-block-navigation-item__content {
+    border-radius: 20% 46% 30% 26% / 34% 18% 40% 28%;
+  }
+
+  .site-nav .wp-block-navigation__container > .wp-block-navigation-item:nth-child(4n+3) .wp-block-navigation-item__content {
+    border-radius: 36% 22% 44% 18% / 24% 42% 20% 34%;
+  }
+
+  .site-nav .wp-block-navigation__container > .wp-block-navigation-item:nth-child(4n) .wp-block-navigation-item__content {
+    border-radius: 24% 38% 18% 46% / 40% 22% 34% 26%;
   }
 
   .wp-block-navigation__submenu-container {
