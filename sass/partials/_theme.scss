@@ -545,6 +545,31 @@
     overflow: visible;
   }
 
+  .post-cards .card,
+  .is-style-cards .card {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .post-cards .card::before,
+  .is-style-cards .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--c-blob-shape);
+    background: var(--c-color-raised);
+    border: 1px solid var(--c-color-border);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    z-index: 0;
+  }
+
+  .post-cards .card > *,
+  .is-style-cards .card > * {
+    position: relative;
+    z-index: 1;
+  }
+
   :root {
     --c-blob-1: 28% 34% 22% 40% / 26% 20% 44% 36%;
     --c-blob-2: 20% 46% 30% 26% / 34% 18% 40% 28%;
