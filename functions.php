@@ -2687,10 +2687,11 @@ function carlashub_v2_render_entry_card( $post, $variant = 'listing' ) {
 
 	$is_post         = 'post' === $post->post_type;
 	$is_listing      = 'listing' === $variant;
-	$card_classes    = 'entry-card entry-card--' . sanitize_html_class( $variant );
 	$type_label      = $is_post ? __( 'Article', 'carlashub-v2' ) : __( 'Page', 'carlashub-v2' );
 	$excerpt         = carlashub_v2_get_card_excerpt( $post, 'featured' === $variant ? 34 : 26 );
-	$thumbnail       = 'featured' === $variant ? carlashub_v2_get_card_thumbnail_markup( $post, 'large' ) : '';
+	$thumbnail       = in_array( $variant, array( 'featured', 'listing' ), true ) ? carlashub_v2_get_card_thumbnail_markup( $post, 'large' ) : '';
+	$card_classes    = 'entry-card entry-card--' . sanitize_html_class( $variant );
+	$card_classes   .= $thumbnail ? ' entry-card--has-thumbnail' : '';
 	$path_label      = carlashub_v2_get_entry_path_label( $post );
 	$is_sticky       = $is_post && is_sticky( $post->ID );
 	$is_archive_view = $is_listing && is_archive();
@@ -2737,6 +2738,11 @@ function carlashub_v2_render_entry_card( $post, $variant = 'listing' ) {
 
 	if ( $is_listing ) {
 		$output .= '<div class="entry-card__shell">';
+
+		if ( $thumbnail ) {
+			$output .= '<div class="entry-card__thumbnail">' . $thumbnail . '</div>';
+		}
+
 		$output .= '<div class="entry-card__main">';
 			$output .= '<div class="entry-card__header">';
 			$output .= '<div>';
