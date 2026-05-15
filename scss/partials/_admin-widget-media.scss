@@ -1,0 +1,19 @@
+.carlashub-media-preview {
+	margin: 0 0 0.5rem;
+}
+
+.carlashub-media-preview[hidden] {
+	display: none;
+}
+
+.carlashub-media-preview__image {
+	display: block;
+	max-width: 5rem;
+	height: auto;
+	margin: 0 0 0.5rem;
+	border-radius: 0.375rem;
+}
+
+.carlashub-media-control .button + .button {
+	margin-left: 0.5rem;
+}

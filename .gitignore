@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Local/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.*
+
+# Build cache
+.sass-cache/
+.cache/
+
+# WordPress/local artefacts
+*.zip
+*.tar
+*.tar.gz
