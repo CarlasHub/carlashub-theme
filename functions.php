@@ -2698,9 +2698,9 @@ function carlashub_v2_render_entry_card( $post, $variant = 'listing' ) {
 	$badge_classes   = 'entry-card__badge screen-reader-text';
 	$stats         = array(
 		sprintf(
-			/* translators: %s: modified date. */
-			__( 'Updated %s', 'carlashub-v2' ),
-			get_the_modified_date( 'M j, Y', $post )
+			/* translators: %s: published date. */
+			__( 'Published %s', 'carlashub-v2' ),
+			get_the_date( 'M j, Y', $post )
 		),
 	);
 	$facts         = array(
