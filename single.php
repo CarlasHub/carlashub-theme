@@ -48,6 +48,7 @@ get_header();
 						<div class="meta-row">
 							<span class="meta-pill"><strong><?php the_author(); ?></strong></span>
 							<span class="meta-pill"><?php echo esc_html( get_the_date() ); ?></span>
+							<span class="meta-pill"><?php echo esc_html( sprintf( __( 'Updated %s', 'carlashub-v2' ), get_the_modified_date() ) ); ?></span>
 							<span class="meta-pill">
 								<?php
 								printf(
@@ -68,6 +69,7 @@ get_header();
 							<p class="document-meta__label"><?php esc_html_e( 'Article metadata', 'carlashub-v2' ); ?></p>
 							<div class="document-meta">
 								<p><strong><?php esc_html_e( 'Published', 'carlashub-v2' ); ?></strong><br><?php echo esc_html( get_the_date() ); ?></p>
+								<p><strong><?php esc_html_e( 'Updated', 'carlashub-v2' ); ?></strong><br><?php echo esc_html( get_the_modified_date() ); ?></p>
 								<p><strong><?php esc_html_e( 'Permalink', 'carlashub-v2' ); ?></strong><br><a href="<?php the_permalink(); ?>"><?php esc_html_e( 'Stable article URL', 'carlashub-v2' ); ?></a></p>
 							</div>
 						</section>
