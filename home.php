@@ -7,7 +7,17 @@
 
 get_header();
 
-$metrics = carlashub_v2_get_site_metrics();
+$metrics       = carlashub_v2_get_site_metrics();
+$archive_posts = get_posts(
+	array(
+		'post_type'           => 'post',
+		'post_status'         => 'publish',
+		'posts_per_page'      => -1,
+		'ignore_sticky_posts' => true,
+		'orderby'             => 'date',
+		'order'               => 'DESC',
+	)
+);
 ?>
 <main id="primary" class="site-main">
 	<div class="shell shell--wide">
@@ -23,13 +33,20 @@ $metrics = carlashub_v2_get_site_metrics();
 
 		<div class="listing-layout section-block">
 			<div>
-				<?php if ( have_posts() ) : ?>
-					<div class="listing-grid">
-						<?php while ( have_posts() ) : the_post(); ?>
-							<?php echo carlashub_v2_render_entry_card( get_post(), 'listing' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-						<?php endwhile; ?>
+				<?php if ( $archive_posts ) : ?>
+					<div id="blog-posts-grid" class="listing-grid js-load-more-grid" data-load-more-initial="4" data-load-more-step="4">
+						<?php foreach ( $archive_posts as $archive_post ) : ?>
+							<?php echo carlashub_v2_render_entry_card( $archive_post, 'listing' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php endforeach; ?>
 					</div>
-					<?php the_posts_pagination(); ?>
+					<?php if ( count( $archive_posts ) > 4 ) : ?>
+						<div class="hero-actions wp-block-query-load-more">
+							<button class="button js-load-more-button" type="button" data-load-more-target="blog-posts-grid">
+								<?php esc_html_e( 'Load more posts', 'carlashub-v2' ); ?>
+							</button>
+							<span class="screen-reader-text js-load-more-status" aria-live="polite"></span>
+						</div>
+					<?php endif; ?>
 				<?php else : ?>
 					<div class="empty-state">
 						<h2><?php esc_html_e( 'No posts yet.', 'carlashub-v2' ); ?></h2>
