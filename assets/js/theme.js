@@ -1,4 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
+	const initLoadMore = (grid, button, options = {}) => {
+		if (!grid || !button) {
+			return;
+		}
+
+		const initial = Number.parseInt(options.initial || grid.dataset.loadMoreInitial || '4', 10);
+		const step = Number.parseInt(options.step || grid.dataset.loadMoreStep || '4', 10);
+		const itemSelector = options.itemSelector || ':scope > *';
+		const items = Array.from(grid.querySelectorAll(itemSelector)).filter((item) => item.parentElement === grid);
+		const control = button.closest('.wp-block-query-load-more, .hero-actions') || button;
+		const status = control.querySelector('.js-load-more-status') || control.parentElement?.querySelector('.js-load-more-status');
+		let visibleCount = Math.min(initial, items.length);
+
+		if (!items.length || items.length <= visibleCount) {
+			control.hidden = true;
+			return;
+		}
+
+		if (button.tagName.toLowerCase() === 'a') {
+			button.setAttribute('role', 'button');
+		}
+
+		const updateItems = () => {
+			items.forEach((item, index) => {
+				const isHidden = index >= visibleCount;
+				item.hidden = isHidden;
+				item.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
+			});
+
+			const remaining = items.length - visibleCount;
+
+			if (remaining <= 0) {
+				control.hidden = true;
+			} else {
+				button.textContent = `Load ${Math.min(step, remaining)} more posts`;
+			}
+
+			if (status) {
+				status.textContent = `${visibleCount} of ${items.length} posts shown.`;
+			}
+		};
+
+		button.addEventListener('click', (event) => {
+			event.preventDefault();
+			visibleCount = Math.min(visibleCount + step, items.length);
+			updateItems();
+		});
+
+		updateItems();
+	};
+
+	document.querySelectorAll('.js-load-more-grid').forEach((grid) => {
+		const targetId = grid.getAttribute('id');
+		const button = targetId ? document.querySelector(`[data-load-more-target="${targetId}"]`) : null;
+		initLoadMore(grid, button);
+	});
+
+	document.querySelectorAll('.entry-content--landing .wp-block-query').forEach((query) => {
+		const grid = query.querySelector('.post-cards, .wp-block-post-template');
+		const button = query.querySelector('.wp-block-query-load-more .button, .wp-block-query-load-more a, .wp-block-query-load-more button');
+		initLoadMore(grid, button, { itemSelector: ':scope > .wp-block-post' });
+	});
+
 	const nav = document.querySelector('#site-navigation');
 	const toggle = document.querySelector('#primary-menu-toggle');
 	const panel = document.querySelector('#primary-menu-container');

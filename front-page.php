@@ -12,7 +12,7 @@ $recent_posts    = get_posts(
 	array(
 		'post_type'           => 'post',
 		'post_status'         => 'publish',
-		'posts_per_page'      => 5,
+		'posts_per_page'      => 21,
 		'ignore_sticky_posts' => true,
 	)
 );
@@ -44,7 +44,8 @@ $contact_mailto_url = carlashub_v2_get_contact_mailto_url();
 						'lede'            => __( 'Mostly things I work on, test, fix, or think about.', 'carlashub-v2' ),
 						'support'         => __( 'Web Developement x A11Y x Design x AI x Tools', 'carlashub-v2' ),
 						'primary_label'   => __( 'Recent posts', 'carlashub-v2' ),
-						'secondary_label' => __( 'Pinned posts', 'carlashub-v2' ),
+						'secondary_label' => __( 'Topics', 'carlashub-v2' ),
+						'secondary_url'   => '#topics',
 						'status_eyebrow'  => __( 'ON THIS SITE', 'carlashub-v2' ),
 						'status_1_label'  => __( 'LATEST POSTS', 'carlashub-v2' ),
 						'status_1_value'  => __( 'New posts, project notes, and the longer write-ups when they are worth doing.', 'carlashub-v2' ),
@@ -62,7 +63,9 @@ $contact_mailto_url = carlashub_v2_get_contact_mailto_url();
 					<?php if ( $has_front_page_content ) : ?>
 						<li><a href="#entry-content"><?php esc_html_e( 'About', 'carlashub-v2' ); ?></a></li>
 					<?php endif; ?>
-					<li><a href="#featured"><?php esc_html_e( 'Pinned posts', 'carlashub-v2' ); ?></a></li>
+					<?php if ( $featured_posts ) : ?>
+						<li><a href="#featured"><?php esc_html_e( 'Featured posts', 'carlashub-v2' ); ?></a></li>
+					<?php endif; ?>
 					<li><a href="#topics"><?php esc_html_e( 'Topics', 'carlashub-v2' ); ?></a></li>
 					<li><a href="#updates"><?php esc_html_e( 'Recent posts', 'carlashub-v2' ); ?></a></li>
 					<li><a href="#contact"><?php esc_html_e( 'Contact', 'carlashub-v2' ); ?></a></li>
@@ -80,7 +83,25 @@ $contact_mailto_url = carlashub_v2_get_contact_mailto_url();
 					</div>
 					<div class="card-grid">
 						<article class="entry-card entry-card--featured entry-content entry-content--landing">
-							<?php the_content(); ?>
+							<?php if ( false !== strpos( $front_page_content_raw, 'post-cards' ) ) : ?>
+								<div class="wp-block-query is-layout-flow wp-block-query-is-layout-flow">
+									<ul class="post-cards is-style-cards wp-block-post-template is-layout-flow wp-block-post-template-is-layout-flow">
+										<?php foreach ( $recent_posts as $landing_post ) : ?>
+											<li class="wp-block-post post-<?php echo esc_attr( (string) $landing_post->ID ); ?>">
+												<?php echo carlashub_v2_render_entry_card( $landing_post, 'featured' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+											</li>
+										<?php endforeach; ?>
+									</ul>
+									<?php if ( count( $recent_posts ) > 4 ) : ?>
+										<div class="hero-actions wp-block-query-load-more">
+											<a class="button" href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php esc_html_e( 'Load more posts', 'carlashub-v2' ); ?></a>
+											<span class="screen-reader-text js-load-more-status" aria-live="polite"></span>
+										</div>
+									<?php endif; ?>
+								</div>
+							<?php else : ?>
+								<?php echo do_shortcode( wp_kses_post( $front_page_content_raw ) ); ?>
+							<?php endif; ?>
 							<?php
 							wp_link_pages(
 								array(
@@ -96,20 +117,22 @@ $contact_mailto_url = carlashub_v2_get_contact_mailto_url();
 				</section>
 			<?php endif; ?>
 
-			<section id="featured" class="section-block">
+			<?php if ( $featured_posts ) : ?>
+				<section id="featured" class="section-block">
 					<div class="section-head">
 						<div>
-							<p class="eyebrow"><?php esc_html_e( 'PINNED', 'carlashub-v2' ); ?></p>
-							<h2><?php esc_html_e( 'Pinned posts', 'carlashub-v2' ); ?></h2>
+							<p class="eyebrow"><?php esc_html_e( 'FEATURED', 'carlashub-v2' ); ?></p>
+							<h2><?php esc_html_e( 'Featured posts', 'carlashub-v2' ); ?></h2>
 							<p class="section-intro"><?php esc_html_e( 'A few posts that say the most about how I work.', 'carlashub-v2' ); ?></p>
 						</div>
 					</div>
-				<div class="card-grid">
-					<?php foreach ( $featured_posts as $featured_post ) : ?>
-						<?php echo carlashub_v2_render_entry_card( $featured_post, 'featured' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<?php endforeach; ?>
-				</div>
-			</section>
+					<div class="card-grid">
+						<?php foreach ( $featured_posts as $featured_post ) : ?>
+							<?php echo carlashub_v2_render_entry_card( $featured_post, 'featured' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php endforeach; ?>
+					</div>
+				</section>
+			<?php endif; ?>
 
 			<section id="topics" class="section-block">
 					<div class="section-head">
@@ -170,31 +193,19 @@ $contact_mailto_url = carlashub_v2_get_contact_mailto_url();
 							<p class="section-intro"><?php esc_html_e( 'The newest posts on the site.', 'carlashub-v2' ); ?></p>
 						</div>
 					</div>
-				<div class="panel section-panel timeline">
+				<div id="recent-posts-grid" class="card-grid js-load-more-grid" data-load-more-initial="4" data-load-more-step="4">
 					<?php foreach ( $recent_posts as $recent_post ) : ?>
-						<?php
-						$timeline_thumbnail = carlashub_v2_get_card_thumbnail_markup( $recent_post, 'medium_large' );
-						$timeline_classes   = 'timeline-item';
-
-						if ( $timeline_thumbnail ) {
-							$timeline_classes .= ' timeline-item--has-thumbnail';
-						}
-						?>
-						<article class="<?php echo esc_attr( $timeline_classes ); ?>">
-							<time datetime="<?php echo esc_attr( get_the_date( DATE_W3C, $recent_post ) ); ?>"><?php echo esc_html( get_the_date( 'M j', $recent_post ) ); ?></time>
-							<?php if ( $timeline_thumbnail ) : ?>
-								<div class="timeline-item__thumbnail">
-									<?php echo $timeline_thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-								</div>
-							<?php endif; ?>
-							<div>
-								<p class="entry-card__path"><?php echo esc_html( carlashub_v2_get_entry_path_label( $recent_post ) ); ?></p>
-								<h3 class="entry-card__title"><a href="<?php echo esc_url( get_permalink( $recent_post ) ); ?>"><?php echo esc_html( get_the_title( $recent_post ) ); ?></a></h3>
-								<p class="entry-summary"><?php echo esc_html( carlashub_v2_get_card_excerpt( $recent_post, 18 ) ); ?></p>
-							</div>
-						</article>
+						<?php echo carlashub_v2_render_entry_card( $recent_post, 'featured' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<?php endforeach; ?>
 				</div>
+				<?php if ( count( $recent_posts ) > 4 ) : ?>
+					<div class="hero-actions wp-block-query-load-more">
+						<button class="button js-load-more-button" type="button" data-load-more-target="recent-posts-grid">
+							<?php esc_html_e( 'Load more posts', 'carlashub-v2' ); ?>
+						</button>
+						<span class="screen-reader-text js-load-more-status" aria-live="polite"></span>
+					</div>
+				<?php endif; ?>
 			</section>
 
 			<section id="contact" class="hub-cta">

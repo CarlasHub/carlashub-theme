@@ -42,9 +42,7 @@ get_header();
 			</article>
 
 			<?php
-			if ( comments_open() || get_comments_number() ) {
-				comments_template();
-			}
+			// Comments are intentionally disabled for this site.
 			?>
 		<?php endwhile; ?>
 	</div>

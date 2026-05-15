@@ -2694,7 +2694,7 @@ function carlashub_v2_render_entry_card( $post, $variant = 'listing' ) {
 	$path_label      = carlashub_v2_get_entry_path_label( $post );
 	$is_sticky       = $is_post && is_sticky( $post->ID );
 	$is_archive_view = $is_listing && is_archive();
-	$show_footer     = ! $is_archive_view;
+	$show_footer     = ! $is_listing && ! $is_archive_view;
 	$badge_classes   = 'entry-card__badge screen-reader-text';
 	$stats         = array(
 		sprintf(
@@ -2704,7 +2704,6 @@ function carlashub_v2_render_entry_card( $post, $variant = 'listing' ) {
 		),
 	);
 	$facts         = array(
-		__( 'Type', 'carlashub-v2' )      => $type_label,
 		__( 'Published', 'carlashub-v2' ) => get_the_date( 'M j, Y', $post ),
 		__( 'Updated', 'carlashub-v2' )   => get_the_modified_date( 'M j, Y', $post ),
 	);
@@ -2758,10 +2757,6 @@ function carlashub_v2_render_entry_card( $post, $variant = 'listing' ) {
 
 		foreach ( $facts as $label => $value ) {
 			$output .= '<div><dt>' . esc_html( $label ) . '</dt><dd>' . esc_html( $value ) . '</dd></div>';
-		}
-
-		if ( $is_sticky ) {
-			$output .= '<div><dt>' . esc_html__( 'State', 'carlashub-v2' ) . '</dt><dd>' . esc_html__( 'Pinned', 'carlashub-v2' ) . '</dd></div>';
 		}
 
 		$output .= '</dl>';
@@ -3058,3 +3053,31 @@ class CarlasHub_V2_Hero_Widget extends WP_Widget {
 		<?php
 	}
 }
+
+/**
+ * Disable comments and comment surfaces site-wide.
+ */
+function carlashub_v2_disable_comments() {
+	foreach ( get_post_types() as $post_type ) {
+		if ( post_type_supports( $post_type, 'comments' ) ) {
+			remove_post_type_support( $post_type, 'comments' );
+		}
+		if ( post_type_supports( $post_type, 'trackbacks' ) ) {
+			remove_post_type_support( $post_type, 'trackbacks' );
+		}
+	}
+}
+add_action( 'init', 'carlashub_v2_disable_comments', 100 );
+
+add_filter( 'comments_open', '__return_false', 20 );
+add_filter( 'pings_open', '__return_false', 20 );
+add_filter( 'comments_array', '__return_empty_array', 20 );
+add_filter( 'feed_links_show_comments_feed', '__return_false', 20 );
+
+/**
+ * Remove comment feed links from the document head.
+ */
+function carlashub_v2_remove_comment_feed_links() {
+	remove_action( 'wp_head', 'feed_links_extra', 3 );
+}
+add_action( 'wp_head', 'carlashub_v2_remove_comment_feed_links', 1 );

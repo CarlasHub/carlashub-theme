@@ -7,36 +7,19 @@
 
 get_header();
 
-$sticky_posts = carlashub_v2_get_pinned_posts( 2 );
-$metrics      = carlashub_v2_get_site_metrics();
+$metrics = carlashub_v2_get_site_metrics();
 ?>
 <main id="primary" class="site-main">
 	<div class="shell shell--wide">
 		<header class="panel archive-header">
 			<p class="eyebrow"><?php esc_html_e( 'Journal', 'carlashub-v2' ); ?></p>
 			<h1><?php single_post_title(); ?></h1>
-			<p class="section-intro"><?php esc_html_e( 'Latest posts, with pinned ones at the top.', 'carlashub-v2' ); ?></p>
+			<p class="section-intro"><?php esc_html_e( 'Latest posts, notes, and project write-ups.', 'carlashub-v2' ); ?></p>
 			<div class="meta-row">
 				<span class="meta-pill"><strong><?php echo esc_html( number_format_i18n( $metrics['posts'] ) ); ?></strong>&nbsp;<?php esc_html_e( 'Articles', 'carlashub-v2' ); ?></span>
 				<span class="meta-pill"><strong><?php echo esc_html( number_format_i18n( $metrics['categories'] ) ); ?></strong>&nbsp;<?php esc_html_e( 'Topics', 'carlashub-v2' ); ?></span>
 			</div>
 		</header>
-
-		<?php if ( ! empty( $sticky_posts ) && 1 === (int) get_query_var( 'paged', 1 ) ) : ?>
-			<section class="section-block">
-				<div class="section-head">
-					<div>
-						<p class="eyebrow"><?php esc_html_e( 'Pinned', 'carlashub-v2' ); ?></p>
-						<h2><?php esc_html_e( 'Pinned posts', 'carlashub-v2' ); ?></h2>
-					</div>
-				</div>
-				<div class="card-grid">
-					<?php foreach ( $sticky_posts as $sticky_post ) : ?>
-						<?php echo carlashub_v2_render_entry_card( $sticky_post, 'featured' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					<?php endforeach; ?>
-				</div>
-			</section>
-		<?php endif; ?>
 
 		<div class="listing-layout section-block">
 			<div>
