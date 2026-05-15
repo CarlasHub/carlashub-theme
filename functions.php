@@ -2705,8 +2705,10 @@ function carlashub_v2_render_entry_card( $post, $variant = 'listing' ) {
 	);
 	$facts         = array(
 		__( 'Published', 'carlashub-v2' ) => get_the_date( 'M j, Y', $post ),
-		__( 'Updated', 'carlashub-v2' )   => get_the_modified_date( 'M j, Y', $post ),
 	);
+	if ( ! $is_listing ) {
+		$facts[ __( 'Updated', 'carlashub-v2' ) ] = get_the_modified_date( 'M j, Y', $post );
+	}
 	$comment_count = (int) get_comments_number( $post );
 
 	if ( $is_post ) {
