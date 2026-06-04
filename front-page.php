@@ -93,9 +93,8 @@ $contact_mailto_url = carlashub_v2_get_contact_mailto_url();
 										<?php endforeach; ?>
 									</ul>
 									<?php if ( count( $recent_posts ) > 4 ) : ?>
-										<div class="hero-actions wp-block-query-load-more">
-											<a class="button" href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php esc_html_e( 'Load more posts', 'carlashub-v2' ); ?></a>
-											<span class="screen-reader-text js-load-more-status" aria-live="polite"></span>
+										<div class="hero-actions">
+											<a class="button" href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php esc_html_e( 'View all posts', 'carlashub-v2' ); ?></a>
 										</div>
 									<?php endif; ?>
 								</div>
