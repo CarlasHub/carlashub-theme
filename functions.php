@@ -3089,3 +3089,102 @@ function carlashub_v2_remove_comment_feed_links() {
 	remove_action( 'wp_head', 'feed_links_extra', 3 );
 }
 add_action( 'wp_head', 'carlashub_v2_remove_comment_feed_links', 1 );
+
+/**
+ * Get an SEO-ready description for the current queried object.
+ *
+ * @return string
+ */
+function carlashub_v2_get_seo_description() {
+	if ( is_singular() ) {
+		$post = get_queried_object();
+
+		if ( $post instanceof WP_Post ) {
+			$custom_description = trim( (string) get_post_meta( $post->ID, '_carlashub_seo_description', true ) );
+
+			if ( $custom_description ) {
+				return wp_trim_words( wp_strip_all_tags( $custom_description ), 32, '' );
+			}
+
+			if ( has_excerpt( $post ) ) {
+				return wp_trim_words( wp_strip_all_tags( get_the_excerpt( $post ) ), 32, '' );
+			}
+
+			return wp_trim_words( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), 32, '' );
+		}
+	}
+
+	if ( is_category() || is_tag() || is_tax() ) {
+		$description = trim( wp_strip_all_tags( term_description() ) );
+
+		if ( $description ) {
+			return wp_trim_words( $description, 32, '' );
+		}
+	}
+
+	return wp_trim_words( wp_strip_all_tags( carlashub_v2_get_site_description() ), 32, '' );
+}
+
+/**
+ * Output lightweight SEO and social metadata.
+ */
+function carlashub_v2_render_seo_meta() {
+	if ( is_admin() || is_feed() ) {
+		return;
+	}
+
+	$title       = wp_get_document_title();
+	$description = carlashub_v2_get_seo_description();
+	$url         = is_singular() ? get_permalink() : home_url( add_query_arg( array(), $GLOBALS['wp']->request ?? '' ) );
+	$type        = is_singular( 'post' ) ? 'article' : 'website';
+	$image       = '';
+
+	if ( is_singular() ) {
+		$post = get_queried_object();
+
+		if ( $post instanceof WP_Post ) {
+			$custom_title = trim( (string) get_post_meta( $post->ID, '_carlashub_seo_title', true ) );
+
+			if ( $custom_title ) {
+				$title = $custom_title;
+			}
+
+			$image = get_the_post_thumbnail_url( $post, 'large' );
+		}
+	}
+
+	if ( ! $image ) {
+		$custom_logo_id = (int) get_theme_mod( 'custom_logo' );
+		$image          = $custom_logo_id ? wp_get_attachment_image_url( $custom_logo_id, 'full' ) : '';
+	}
+
+	echo "\n" . '<meta name="description" content="' . esc_attr( $description ) . '">' . "\n";
+	echo '<meta property="og:title" content="' . esc_attr( $title ) . '">' . "\n";
+	echo '<meta property="og:description" content="' . esc_attr( $description ) . '">' . "\n";
+	echo '<meta property="og:type" content="' . esc_attr( $type ) . '">' . "\n";
+	echo '<meta property="og:url" content="' . esc_url( $url ) . '">' . "\n";
+	echo '<meta property="og:site_name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '">' . "\n";
+	echo '<meta name="twitter:card" content="' . esc_attr( $image ? 'summary_large_image' : 'summary' ) . '">' . "\n";
+	echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '">' . "\n";
+	echo '<meta name="twitter:description" content="' . esc_attr( $description ) . '">' . "\n";
+
+	if ( $image ) {
+		echo '<meta property="og:image" content="' . esc_url( $image ) . '">' . "\n";
+		echo '<meta name="twitter:image" content="' . esc_url( $image ) . '">' . "\n";
+	}
+
+	if ( is_singular( 'post' ) ) {
+		foreach ( get_the_category() as $category ) {
+			echo '<meta property="article:section" content="' . esc_attr( $category->name ) . '">' . "\n";
+		}
+
+		$tags = get_the_tags();
+
+		if ( $tags ) {
+			foreach ( $tags as $tag ) {
+				echo '<meta property="article:tag" content="' . esc_attr( $tag->name ) . '">' . "\n";
+			}
+		}
+	}
+}
+add_action( 'wp_head', 'carlashub_v2_render_seo_meta', 4 );
