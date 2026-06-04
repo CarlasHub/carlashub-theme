@@ -46,7 +46,7 @@ get_header();
 				<div class="document__layout">
 					<div class="panel document__content entry-content entry-content--prose">
 						<div class="meta-row">
-							<span class="meta-pill"><strong><?php the_author(); ?></strong></span>
+							<span class="meta-pill"><strong><?php echo esc_html( get_the_author() ? get_the_author() : __( 'Carla G.', 'carlashub-v2' ) ); ?></strong></span>
 							<span class="meta-pill"><?php echo esc_html( get_the_date() ); ?></span>
 							<span class="meta-pill"><?php echo esc_html( sprintf( __( 'Updated %s', 'carlashub-v2' ), get_the_modified_date() ) ); ?></span>
 							<span class="meta-pill">
