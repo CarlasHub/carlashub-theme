@@ -1000,6 +1000,8 @@ input[type=submit],
   margin: 0;
   border-radius: var(--radius-s);
   align-self: stretch;
+  width: 100%;
+  min-width: 0;
   min-height: 10.5rem;
 }
 
