@@ -3175,10 +3175,18 @@ function carlashub_v2_get_seo_description() {
 			}
 
 			if ( has_excerpt( $post ) ) {
-				return wp_trim_words( wp_strip_all_tags( get_the_excerpt( $post ) ), 32, '' );
+				$excerpt = trim( wp_strip_all_tags( get_the_excerpt( $post ) ) );
+
+				if ( $excerpt ) {
+					return wp_trim_words( $excerpt, 32, '' );
+				}
 			}
 
-			return wp_trim_words( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), 32, '' );
+			$content_description = trim( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ) );
+
+			if ( $content_description ) {
+				return wp_trim_words( $content_description, 32, '' );
+			}
 		}
 	}
 
@@ -3194,6 +3202,55 @@ function carlashub_v2_get_seo_description() {
 }
 
 /**
+ * Get the preferred social preview image URL.
+ *
+ * @param WP_Post|null $post Optional post context.
+ * @return string
+ */
+function carlashub_v2_get_seo_image_url( $post = null ) {
+	if ( $post instanceof WP_Post ) {
+		$image = get_the_post_thumbnail_url( $post, 'large' );
+
+		if ( $image ) {
+			return $image;
+		}
+	}
+
+	$custom_logo_id = (int) get_theme_mod( 'custom_logo' );
+	$image          = $custom_logo_id ? wp_get_attachment_image_url( $custom_logo_id, 'full' ) : '';
+
+	return $image ? $image : '';
+}
+
+/**
+ * Get the canonical URL for the current page.
+ *
+ * @return string
+ */
+function carlashub_v2_get_current_canonical_url() {
+	if ( is_singular() ) {
+		return (string) get_permalink();
+	}
+
+	if ( is_home() || is_front_page() ) {
+		return home_url( '/' );
+	}
+
+	if ( is_category() || is_tag() || is_tax() ) {
+		$object = get_queried_object();
+		$url    = $object instanceof WP_Term ? get_term_link( $object ) : '';
+
+		if ( ! is_wp_error( $url ) && is_string( $url ) && '' !== $url ) {
+			return $url;
+		}
+	}
+
+	$request = isset( $GLOBALS['wp']->request ) ? (string) $GLOBALS['wp']->request : '';
+
+	return $request ? home_url( '/' . ltrim( $request, '/' ) . '/' ) : home_url( '/' );
+}
+
+/**
  * Output lightweight SEO and social metadata.
  */
 function carlashub_v2_render_seo_meta() {
@@ -3203,9 +3260,10 @@ function carlashub_v2_render_seo_meta() {
 
 	$title       = wp_get_document_title();
 	$description = carlashub_v2_get_seo_description();
-	$url         = is_singular() ? get_permalink() : home_url( add_query_arg( array(), $GLOBALS['wp']->request ?? '' ) );
+	$url         = carlashub_v2_get_current_canonical_url();
 	$type        = is_singular( 'post' ) ? 'article' : 'website';
 	$image       = '';
+	$post        = null;
 
 	if ( is_singular() ) {
 		$post = get_queried_object();
@@ -3216,15 +3274,10 @@ function carlashub_v2_render_seo_meta() {
 			if ( $custom_title ) {
 				$title = $custom_title;
 			}
-
-			$image = get_the_post_thumbnail_url( $post, 'large' );
 		}
 	}
 
-	if ( ! $image ) {
-		$custom_logo_id = (int) get_theme_mod( 'custom_logo' );
-		$image          = $custom_logo_id ? wp_get_attachment_image_url( $custom_logo_id, 'full' ) : '';
-	}
+	$image = carlashub_v2_get_seo_image_url( $post instanceof WP_Post ? $post : null );
 
 	echo "\n" . '<meta name="description" content="' . esc_attr( $description ) . '">' . "\n";
 	echo '<meta property="og:title" content="' . esc_attr( $title ) . '">' . "\n";
@@ -3241,7 +3294,11 @@ function carlashub_v2_render_seo_meta() {
 		echo '<meta name="twitter:image" content="' . esc_url( $image ) . '">' . "\n";
 	}
 
-	if ( is_singular( 'post' ) ) {
+	if ( is_singular( 'post' ) && $post instanceof WP_Post ) {
+		echo '<meta property="article:published_time" content="' . esc_attr( get_post_time( DATE_W3C, true, $post ) ) . '">' . "\n";
+		echo '<meta property="article:modified_time" content="' . esc_attr( get_post_modified_time( DATE_W3C, true, $post ) ) . '">' . "\n";
+		echo '<meta property="og:updated_time" content="' . esc_attr( get_post_modified_time( DATE_W3C, true, $post ) ) . '">' . "\n";
+
 		foreach ( get_the_category() as $category ) {
 			echo '<meta property="article:section" content="' . esc_attr( $category->name ) . '">' . "\n";
 		}
@@ -3256,3 +3313,94 @@ function carlashub_v2_render_seo_meta() {
 	}
 }
 add_action( 'wp_head', 'carlashub_v2_render_seo_meta', 4 );
+
+/**
+ * Output JSON-LD structured data for Google and other crawlers.
+ */
+function carlashub_v2_render_structured_data() {
+	if ( is_admin() || is_feed() || carlashub_v2_should_noindex_current_request() ) {
+		return;
+	}
+
+	$site_url    = home_url( '/' );
+	$site_name   = carlashub_v2_get_site_name();
+	$description = carlashub_v2_get_seo_description();
+	$image       = carlashub_v2_get_seo_image_url();
+	$person_id   = $site_url . '#person-carla-goncalves';
+	$website_id  = $site_url . '#website';
+	$graph       = array(
+		array_filter(
+			array(
+				'@type'       => 'Person',
+				'@id'         => $person_id,
+				'name'        => 'Carla Goncalves',
+				'alternateName' => 'Carla G.',
+				'url'         => $site_url,
+				'image'       => $image,
+				'jobTitle'    => 'Web Developer',
+				'knowsAbout'  => array( 'Accessibility', 'WordPress', 'Web development', 'AI tooling', 'Developer tools' ),
+				'sameAs'      => array(
+					'https://github.com/CarlasHub',
+					'https://www.linkedin.com/in/carla-goncalves/',
+				),
+			)
+		),
+		array_filter(
+			array(
+				'@type'       => 'WebSite',
+				'@id'         => $website_id,
+				'name'        => $site_name,
+				'url'         => $site_url,
+				'description' => $description,
+				'publisher'   => array( '@id' => $person_id ),
+				'potentialAction' => array(
+					'@type'       => 'SearchAction',
+					'target'      => home_url( '/?s={search_term_string}' ),
+					'query-input' => 'required name=search_term_string',
+				),
+			)
+		),
+	);
+
+	if ( is_singular( 'post' ) ) {
+		$post = get_queried_object();
+
+		if ( $post instanceof WP_Post ) {
+			$post_image = carlashub_v2_get_seo_image_url( $post );
+			$keywords   = array();
+			$tags       = get_the_tags( $post->ID );
+
+			if ( $tags ) {
+				foreach ( $tags as $tag ) {
+					$keywords[] = $tag->name;
+				}
+			}
+
+			$graph[] = array_filter(
+				array(
+					'@type'            => 'BlogPosting',
+					'@id'              => get_permalink( $post ) . '#article',
+					'headline'         => wp_strip_all_tags( get_the_title( $post ) ),
+					'description'      => $description,
+					'url'              => get_permalink( $post ),
+					'datePublished'    => get_post_time( DATE_W3C, true, $post ),
+					'dateModified'     => get_post_modified_time( DATE_W3C, true, $post ),
+					'image'            => $post_image ? array( $post_image ) : null,
+					'author'           => array( '@id' => $person_id ),
+					'publisher'        => array( '@id' => $person_id ),
+					'mainEntityOfPage' => get_permalink( $post ),
+					'keywords'         => $keywords ? implode( ', ', $keywords ) : null,
+				)
+			);
+		}
+	}
+
+	echo "\n" . '<script type="application/ld+json">' . wp_json_encode(
+		array(
+			'@context' => 'https://schema.org',
+			'@graph'   => $graph,
+		),
+		JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+	) . '</script>' . "\n";
+}
+add_action( 'wp_head', 'carlashub_v2_render_structured_data', 30 );

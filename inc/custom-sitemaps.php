@@ -131,12 +131,53 @@ function carlashub_v2_get_category_sitemap_entries() {
 			continue;
 		}
 
+		$latest_post = get_posts(
+			array(
+				'post_type'              => 'post',
+				'post_status'            => 'publish',
+				'posts_per_page'         => 1,
+				'orderby'                => 'modified',
+				'order'                  => 'DESC',
+				'cat'                    => (int) $term->term_id,
+				'no_found_rows'          => true,
+				'ignore_sticky_posts'    => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+				'suppress_filters'       => false,
+			)
+		);
+
 		$entries[] = array(
-			'loc' => $url,
+			'loc'     => $url,
+			'lastmod' => $latest_post ? get_post_modified_time( DATE_W3C, true, $latest_post[0] ) : '',
 		);
 	}
 
 	return $entries;
+}
+
+/**
+ * Return the latest lastmod value from a sitemap entry list.
+ *
+ * @param array<int,array<string,string>> $entries Sitemap entries.
+ * @return string
+ */
+function carlashub_v2_get_latest_sitemap_lastmod( $entries ) {
+	$latest = 0;
+
+	foreach ( $entries as $entry ) {
+		if ( empty( $entry['lastmod'] ) || ! is_string( $entry['lastmod'] ) ) {
+			continue;
+		}
+
+		$timestamp = strtotime( $entry['lastmod'] );
+
+		if ( $timestamp && $timestamp > $latest ) {
+			$latest = $timestamp;
+		}
+	}
+
+	return $latest ? gmdate( DATE_W3C, $latest ) : '';
 }
 
 /**
@@ -145,12 +186,16 @@ function carlashub_v2_get_category_sitemap_entries() {
  * @return string
  */
 function carlashub_v2_render_sitemap_index_xml() {
-	$urls = carlashub_v2_get_custom_sitemap_urls();
+	$urls               = carlashub_v2_get_custom_sitemap_urls();
+	$post_lastmod       = carlashub_v2_get_latest_sitemap_lastmod( carlashub_v2_get_post_sitemap_entries() );
+	$category_lastmod   = carlashub_v2_get_latest_sitemap_lastmod( carlashub_v2_get_category_sitemap_entries() );
+	$post_lastmod_xml   = $post_lastmod ? '<lastmod>' . carlashub_v2_escape_xml_text( $post_lastmod ) . '</lastmod>' : '';
+	$category_lastmod_xml = $category_lastmod ? '<lastmod>' . carlashub_v2_escape_xml_text( $category_lastmod ) . '</lastmod>' : '';
 
 	return '<?xml version="1.0" encoding="UTF-8"?>' . "\n" .
 		'<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n" .
-		"\t" . '<sitemap><loc>' . carlashub_v2_escape_xml_text( $urls['posts'] ) . '</loc></sitemap>' . "\n" .
-		"\t" . '<sitemap><loc>' . carlashub_v2_escape_xml_text( $urls['categories'] ) . '</loc></sitemap>' . "\n" .
+		"\t" . '<sitemap><loc>' . carlashub_v2_escape_xml_text( $urls['posts'] ) . '</loc>' . $post_lastmod_xml . '</sitemap>' . "\n" .
+		"\t" . '<sitemap><loc>' . carlashub_v2_escape_xml_text( $urls['categories'] ) . '</loc>' . $category_lastmod_xml . '</sitemap>' . "\n" .
 		'</sitemapindex>';
 }
 
