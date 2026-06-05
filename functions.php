@@ -2709,6 +2709,10 @@ function carlashub_v2_get_project_navigation_items() {
 			'url'   => 'https://carlashub.github.io/Impressive-Maps/',
 		),
 		array(
+			'label' => __( 'Site Crawler', 'carlashub-v2' ),
+			'url'   => 'https://carlashub.github.io/site-crawler/',
+		),
+		array(
 			'label' => __( 'System Design 52 Weeks', 'carlashub-v2' ),
 			'url'   => 'https://carlashub.github.io/system-design-52weeks/',
 		),
