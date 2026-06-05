@@ -426,6 +426,7 @@ body.menu-open {
 .site-nav .menu {
   justify-content: flex-end;
   flex-wrap: nowrap;
+  gap: 1.2rem;
   min-width: 0;
 }
 
@@ -446,12 +447,34 @@ body.menu-open {
 }
 
 .site-nav .menu a {
+  gap: 0.35rem;
+  min-height: 2.25rem;
+  padding-inline: 0.15rem;
   white-space: nowrap;
+}
+
+.site-nav .menu > .menu-item-has-children > a::after {
+  content: "";
+  display: inline-block;
+  width: 0.38rem;
+  height: 0.38rem;
+  margin-left: 0.1rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  opacity: 0.78;
+  transform: translateY(-0.12rem) rotate(45deg);
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.site-nav .menu > .menu-item-has-children:hover > a::after,
+.site-nav .menu > .menu-item-has-children:focus-within > a::after {
+  opacity: 1;
+  transform: translateY(0.05rem) rotate(225deg);
 }
 
 .site-nav .menu .sub-menu {
   position: absolute;
-  top: calc(100% + 0.35rem);
+  top: calc(100% + 0.5rem);
   right: 0;
   display: grid;
   align-items: stretch;
@@ -479,7 +502,8 @@ body.menu-open {
 
 .site-nav .menu .sub-menu a {
   width: 100%;
-  padding: 0.5rem 0.65rem;
+  min-height: 2.5rem;
+  padding: 0.6rem 0.7rem;
   border-bottom: 0;
   border-radius: var(--radius-s);
   white-space: normal;
@@ -492,10 +516,19 @@ body.menu-open {
 
 .menu a:hover,
 .footer-menu a:hover,
+.menu a:focus-visible,
+.footer-menu a:focus-visible,
 .menu .current-menu-item > a,
 .menu .current_page_item > a {
   border-bottom-color: rgba(134, 173, 255, 0.72);
   color: var(--text);
+}
+
+.menu a:focus-visible,
+.footer-menu a:focus-visible {
+  outline: 2px solid rgba(134, 173, 255, 0.72);
+  outline-offset: 0.18rem;
+  border-radius: var(--radius-s);
 }
 
 .site-nav__search {
