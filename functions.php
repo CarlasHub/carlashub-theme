@@ -292,8 +292,10 @@ function carlashub_v2_is_sitemap_request() {
  * Determine whether the current request should be noindexed.
  *
  * Main site:
- * - keep singular posts/pages and the front page indexable
- * - noindex archives, the posts page, search, 404s, and paginated archive views
+ * - keep singular posts/pages, the front page, the writing page, and primary
+ *   category topic pages indexable
+ * - noindex low-value generated views such as search, feeds, tags, author/date
+ *   archives, 404s, and paginated archive views
  *
  * Demo subdomains:
  * - noindex everything
@@ -317,15 +319,19 @@ function carlashub_v2_should_noindex_current_request() {
 		return true;
 	}
 
-	if ( is_home() && ! is_front_page() ) {
+	if ( is_paged() && ! is_singular() ) {
 		return true;
+	}
+
+	if ( is_home() && ! is_front_page() ) {
+		return false;
+	}
+
+	if ( is_category() ) {
+		return false;
 	}
 
 	if ( is_archive() && ! is_singular() ) {
-		return true;
-	}
-
-	if ( is_paged() && ! is_singular() ) {
 		return true;
 	}
 
@@ -1663,6 +1669,16 @@ function carlashub_v2_get_contact_mailto_url() {
  */
 function carlashub_v2_document_title_parts( $parts ) {
 	$parts['site'] = carlashub_v2_get_site_name();
+
+	if ( is_front_page() ) {
+		$parts['title'] = carlashub_v2_get_site_name();
+		unset( $parts['site'] );
+		unset( $parts['tagline'] );
+	}
+
+	if ( is_home() && ! is_front_page() ) {
+		$parts['title'] = __( 'Writing', 'carlashub-v2' );
+	}
 
 	return $parts;
 }
@@ -3164,6 +3180,14 @@ add_action( 'wp_head', 'carlashub_v2_remove_comment_feed_links', 1 );
  * @return string
  */
 function carlashub_v2_get_seo_description() {
+	if ( is_front_page() ) {
+		return __( 'Carla Goncalves writes about web development, accessibility, AI tooling, WordPress, and practical projects from CarlasHub.', 'carlashub-v2' );
+	}
+
+	if ( is_home() && ! is_front_page() ) {
+		return __( 'Read CarlasHub articles on accessibility, AI tooling, WordPress, web development, and project notes from Carla Goncalves.', 'carlashub-v2' );
+	}
+
 	if ( is_singular() ) {
 		$post = get_queried_object();
 
@@ -3195,6 +3219,22 @@ function carlashub_v2_get_seo_description() {
 
 		if ( $description ) {
 			return wp_trim_words( $description, 32, '' );
+		}
+
+		$term = get_queried_object();
+
+		if ( $term instanceof WP_Term && is_category() ) {
+			$category_descriptions = array(
+				'a11y'      => __( 'Accessibility articles, A11Y Cat feature notes, WCAG testing workflows, keyboard checks, screen reader review, and practical accessibility QA.', 'carlashub-v2' ),
+				'ai'        => __( 'AI articles about agentic workflows, MCP servers, responsible AI, GitHub Copilot, AI guardrails, and practical developer tooling.', 'carlashub-v2' ),
+				'web-apps'  => __( 'Web app projects, developer tools, browser-based experiments, interface details, and practical notes from building and testing software.', 'carlashub-v2' ),
+				'wp'        => __( 'WordPress notes about themes, publishing workflows, SEO, accessibility, content structure, and maintaining CarlasHub.', 'carlashub-v2' ),
+				'portfolio' => __( 'Portfolio entries for Carla Goncalves, including web development, accessibility, AI tooling, and project case studies from CarlasHub.', 'carlashub-v2' ),
+			);
+
+			if ( isset( $category_descriptions[ $term->slug ] ) ) {
+				return $category_descriptions[ $term->slug ];
+			}
 		}
 	}
 
@@ -3230,6 +3270,13 @@ function carlashub_v2_get_seo_image_url( $post = null ) {
 function carlashub_v2_get_current_canonical_url() {
 	if ( is_singular() ) {
 		return (string) get_permalink();
+	}
+
+	if ( is_home() && ! is_front_page() ) {
+		$posts_page_id = (int) get_option( 'page_for_posts' );
+		$posts_url     = $posts_page_id ? get_permalink( $posts_page_id ) : '';
+
+		return is_string( $posts_url ) && '' !== $posts_url ? $posts_url : home_url( '/blog/' );
 	}
 
 	if ( is_home() || is_front_page() ) {
@@ -3289,6 +3336,10 @@ function carlashub_v2_render_seo_meta() {
 	echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '">' . "\n";
 	echo '<meta name="twitter:description" content="' . esc_attr( $description ) . '">' . "\n";
 
+	if ( ! is_singular() && ! carlashub_v2_should_noindex_current_request() ) {
+		echo '<link rel="canonical" href="' . esc_url( $url ) . '">' . "\n";
+	}
+
 	if ( $image ) {
 		echo '<meta property="og:image" content="' . esc_url( $image ) . '">' . "\n";
 		echo '<meta name="twitter:image" content="' . esc_url( $image ) . '">' . "\n";
@@ -3331,15 +3382,15 @@ function carlashub_v2_render_structured_data() {
 	$graph       = array(
 		array_filter(
 			array(
-				'@type'       => 'Person',
-				'@id'         => $person_id,
-				'name'        => 'Carla Goncalves',
+				'@type'         => 'Person',
+				'@id'           => $person_id,
+				'name'          => 'Carla Goncalves',
 				'alternateName' => 'Carla G.',
-				'url'         => $site_url,
-				'image'       => $image,
-				'jobTitle'    => 'Web Developer',
-				'knowsAbout'  => array( 'Accessibility', 'WordPress', 'Web development', 'AI tooling', 'Developer tools' ),
-				'sameAs'      => array(
+				'url'           => $site_url,
+				'image'         => $image,
+				'jobTitle'      => 'Web Developer',
+				'knowsAbout'    => array( 'Accessibility', 'WordPress', 'Web development', 'AI tooling', 'Developer tools' ),
+				'sameAs'        => array(
 					'https://github.com/CarlasHub',
 					'https://www.linkedin.com/in/carla-goncalves/',
 				),
@@ -3361,6 +3412,20 @@ function carlashub_v2_render_structured_data() {
 			)
 		),
 	);
+
+	if ( is_front_page() || is_home() || is_category() ) {
+		$graph[] = array_filter(
+			array(
+				'@type'       => is_front_page() ? 'WebPage' : 'CollectionPage',
+				'@id'         => carlashub_v2_get_current_canonical_url() . '#webpage',
+				'name'        => wp_get_document_title(),
+				'description' => $description,
+				'url'         => carlashub_v2_get_current_canonical_url(),
+				'isPartOf'    => array( '@id' => $website_id ),
+				'about'       => array( '@id' => $person_id ),
+			)
+		);
+	}
 
 	if ( is_singular( 'post' ) ) {
 		$post = get_queried_object();
