@@ -2645,6 +2645,12 @@ function carlashub_v2_get_fallback_navigation_items() {
 		'url'   => carlashub_v2_get_blog_url(),
 	);
 
+	$items[] = array(
+		'label'    => __( 'Projects', 'carlashub-v2' ),
+		'url'      => 'https://github.com/CarlasHub',
+		'children' => carlashub_v2_get_project_navigation_items(),
+	);
+
 	$pages = get_pages(
 		array(
 			'parent'      => 0,
@@ -2669,6 +2675,44 @@ function carlashub_v2_get_fallback_navigation_items() {
 	);
 
 	return $items;
+}
+
+/**
+ * Build the public project links shown under Projects.
+ *
+ * @return array<int,array<string,string>>
+ */
+function carlashub_v2_get_project_navigation_items() {
+	return array(
+		array(
+			'label' => __( 'A11Y Cat Extension', 'carlashub-v2' ),
+			'url'   => 'https://carlashub.github.io/a11y-cat-extension/',
+		),
+		array(
+			'label' => __( 'A11Y Standards Trainer', 'carlashub-v2' ),
+			'url'   => 'https://carlashub.github.io/A11Y-Standards-Trainer/',
+		),
+		array(
+			'label' => __( 'Accessibility Checklist', 'carlashub-v2' ),
+			'url'   => 'https://carlashub.github.io/accessibility-checklist/',
+		),
+		array(
+			'label' => __( 'Agents Workflow Blueprint', 'carlashub-v2' ),
+			'url'   => 'https://carlashub.github.io/Agents-Workflow-Blueprint/',
+		),
+		array(
+			'label' => __( 'GH-600 Agentic AI Study Site', 'carlashub-v2' ),
+			'url'   => 'https://carlashub.github.io/gh600-agentic-ai-study-site/',
+		),
+		array(
+			'label' => __( 'Impressive Maps', 'carlashub-v2' ),
+			'url'   => 'https://carlashub.github.io/Impressive-Maps/',
+		),
+		array(
+			'label' => __( 'System Design 52 Weeks', 'carlashub-v2' ),
+			'url'   => 'https://carlashub.github.io/system-design-52weeks/',
+		),
+	);
 }
 
 /**
@@ -2821,11 +2865,31 @@ function carlashub_v2_primary_menu_fallback() {
 	echo '<ul id="primary-menu" class="menu">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	foreach ( $items as $item ) {
+		$children = ! empty( $item['children'] ) && is_array( $item['children'] ) ? $item['children'] : array();
+		$classes  = $children ? 'menu-item menu-item-has-children' : 'menu-item';
+
 		printf(
-			'<li class="menu-item"><a href="%1$s">%2$s</a></li>',
+			'<li class="%1$s"><a href="%2$s">%3$s</a>',
+			esc_attr( $classes ),
 			esc_url( $item['url'] ),
 			esc_html( $item['label'] )
 		);
+
+		if ( $children ) {
+			echo '<ul class="sub-menu">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+			foreach ( $children as $child ) {
+				printf(
+					'<li class="menu-item"><a href="%1$s">%2$s</a></li>',
+					esc_url( $child['url'] ),
+					esc_html( $child['label'] )
+				);
+			}
+
+			echo '</ul>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+
+		echo '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	echo '</ul>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

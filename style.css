@@ -429,6 +429,10 @@ body.menu-open {
   min-width: 0;
 }
 
+.menu .menu-item {
+  position: relative;
+}
+
 .menu a,
 .footer-menu a {
   display: inline-flex;
@@ -443,6 +447,47 @@ body.menu-open {
 
 .site-nav .menu a {
   white-space: nowrap;
+}
+
+.site-nav .menu .sub-menu {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  display: grid;
+  align-items: stretch;
+  min-width: 18rem;
+  margin: 0;
+  padding: 0.75rem;
+  border: 1px solid rgba(134, 173, 255, 0.18);
+  border-radius: var(--radius-s);
+  background: rgba(11, 17, 28, 0.98);
+  box-shadow: var(--shadow);
+  list-style: none;
+  opacity: 0;
+  transform: translateY(0.35rem);
+  visibility: hidden;
+  z-index: 240;
+  transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+}
+
+.site-nav .menu .menu-item:hover > .sub-menu,
+.site-nav .menu .menu-item:focus-within > .sub-menu {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.site-nav .menu .sub-menu a {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border-bottom: 0;
+  border-radius: var(--radius-s);
+  white-space: normal;
+}
+
+.site-nav .menu .sub-menu a:hover,
+.site-nav .menu .sub-menu a:focus-visible {
+  background: rgba(95, 144, 255, 0.1);
 }
 
 .menu a:hover,
@@ -2048,6 +2093,20 @@ input[type=submit],
     flex-direction: column;
     align-items: stretch;
     gap: 0;
+  }
+  .site-nav .menu .sub-menu {
+    position: static;
+    min-width: 0;
+    margin: 0 0 0.75rem;
+    padding: 0 0 0 1rem;
+    border: 0;
+    border-left: 1px solid rgba(134, 173, 255, 0.18);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    opacity: 1;
+    transform: none;
+    visibility: visible;
   }
   .site-nav .menu a {
     padding: 0.85rem 0.2rem;
